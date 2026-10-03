@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a111a" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <title>Aster Atlas — Trace the evidence</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail">
+      <a class="brand" href="#home" aria-label="Aster Atlas home"><span class="brand-mark" aria-hidden="true">✳</span><span>ASTER<br><small>ATLAS</small></span></a>
+      <section class="hologram-wrap" aria-label="Living Hologram: interactive evidence map">
+        <div class="module-head"><span class="eyebrow">01 / LIVING HOLOGRAM</span><span class="live-dot">LIVE MAP</span></div>
+        <div class="hologram" id="hologram"><canvas id="scene" aria-hidden="true"></canvas><div class="holo-center" aria-hidden="true"><span>8</span><small>ENTITIES</small></div></div>
+        <p class="holo-caption">Move through the evidence. Select a node to unfold its sources.</p>
+        <div class="holo-meta"><span>2 conditions</span><span>4 sources</span><span>0 unsupported links</span></div>
+      </section>
+      <nav class="rail-nav" aria-label="Primary"><a href="#explore" class="active">Explore <span>↗</span></a><a href="#pathways">Pathways <span>↗</span></a><a href="#sources">Sources <span>↗</span></a></nav>
+      <div class="rail-bottom"><span class="privacy-dot"></span> Pointer pacing stays on this device.<br><span class="rail-small">Research demo · reviewed 03 Oct 2026</span></div>
+    </aside>
+
+    <main id="home">
+      <header class="topbar"><div class="topbar-left"><span class="topbar-square"></span> A NEW WAY TO EXPLORE RARE-DISEASE EVIDENCE</div><div class="topbar-right"><span>SOLO BUILD / HACK-NATION 7</span><span class="edition">PROTOTYPE / 001</span></div></header>
+      <section class="hero"><div class="hero-copy"><div class="eyebrow hero-eyebrow"><span class="line"></span> THE EVIDENCE IS THE INTERFACE</div><h1>Find the link.<br><em>See the proof.</em></h1><p>Rare-disease information is scattered across clinical references, study registries, and patient organizations. Aster Atlas makes each connection inspectable, with its source one click away.</p><div class="hero-actions"><a class="primary-btn" href="#explore">Explore the atlas <span>↗</span></a><a class="text-btn" href="#how">How it works <span>→</span></a></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="art-core"><span>✳</span></div><span class="art-label art-label-a">CLINICAL</span><span class="art-label art-label-b">GENETIC</span><span class="art-label art-label-c">RESEARCH</span><span class="art-tick art-tick-a">+ 01</span><span class="art-tick art-tick-b">+ 02</span></div></section>
+
+      <section class="status-strip" aria-label="Prototype scope"><div><strong>02</strong><span>conditions</span></div><div><strong>08</strong><span>linked entities</span></div><div><strong>08</strong><span>cited connections</span></div><div class="scope-note">A deliberately small, source-checked demonstration. No diagnosis or treatment advice.</div></section>
+
+      <section id="explore" class="explore-section"><div class="section-intro"><div><div class="eyebrow">02 / INTERACTIVE ATLAS</div><h2>Explore a connection.</h2></div><p>Search a condition, gene, phenotype, study, or community resource. Every link opens the evidence behind it.</p></div>
+        <div class="workspace"><div class="workspace-main"><div class="workspace-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Try “FXN”, “ataxia”, or “study”" autocomplete="off" aria-label="Search atlas entities"><kbd>/</kbd></label><div class="type-filters" role="group" aria-label="Filter entity type"><button class="filter active" data-type="all">All</button><button class="filter" data-type="disease">Conditions</button><button class="filter" data-type="gene">Genes</button><button class="filter" data-type="phenotype">Phenotypes</button><button class="filter" data-type="study">Studies</button></div></div><div id="graph" class="graph" role="img" aria-label="Evidence network. A text list of all entities follows."><svg id="edge-layer" aria-hidden="true"></svg><div class="graph-grid" aria-hidden="true"></div><div id="graph-nodes"></div><div class="graph-key"><span><i class="key-dot key-condition"></i> CONDITION</span><span><i class="key-dot key-evidence"></i> EVIDENCE</span><span><i class="key-dot key-research"></i> RESEARCH</span></div><div class="graph-scale">FIG. 01 — SOURCE-BOUND NETWORK</div></div><div class="route-builder"><div class="route-question"><label for="route-question">ASK THE ATLAS</label><input id="route-question" type="text" placeholder="How is FXN connected to ATM?" autocomplete="off"><button id="ask-button">FIND PATH ↗</button></div><p id="question-status" class="question-status" aria-live="polite"></p><div class="route-controls"><strong>TRACE AN EVIDENCE ROUTE</strong><label>FROM <select id="route-start" aria-label="Route start"></select></label><span aria-hidden="true">→</span><label>TO <select id="route-end" aria-label="Route end"></select></label><button id="route-button">TRACE ↗</button></div><div id="route-result" class="route-result" aria-live="polite"></div></div><div class="entity-list-head"><span>ENTITY INDEX</span><span id="result-count">08 RESULTS</span></div><div id="entity-list" class="entity-list" aria-label="Atlas entities"></div></div><aside id="inspector" class="inspector" aria-live="polite"></aside></div>
+      </section>
+
+      <section id="pathways" class="pathways-section"><div class="section-intro"><div><div class="eyebrow">03 / GUIDED PATHWAYS</div><h2>Start where you are.</h2></div><p>Choose a lens. The evidence stays the same; the route through it changes.</p></div><div class="path-selector" role="group" aria-label="Choose pathway"><button id="family-tab" class="path-tab active" data-journey="family" aria-pressed="true"><span>01</span> For families <b>↗</b></button><button id="researcher-tab" class="path-tab" data-journey="researcher" aria-pressed="false"><span>02</span> For researchers <b>↗</b></button></div><div id="journey-steps" class="journey-steps"></div></section>
+
+      <section id="how" class="principle-section"><div class="eyebrow">THE PRINCIPLE</div><blockquote>“A connection should never travel farther than its evidence.”</blockquote><div class="principle-grid"><div><span>01 / TRACE</span><p>Start with a specific entity and walk its documented connections.</p></div><div><span>02 / INSPECT</span><p>Read the exact relationship, evidence status, and original source.</p></div><div><span>03 / VERIFY</span><p>Open the live source before relying on a study or clinical claim.</p></div></div></section>
+
+      <section id="sources" class="sources-section"><div class="section-intro"><div><div class="eyebrow">04 / PROVENANCE</div><h2>Sources, in plain sight.</h2></div><p>All content in this demo is paraphrased from these public sources. Registry status and eligibility can change; use the live records.</p></div><div id="source-list" class="source-list"></div></section>
+      <footer><div class="footer-brand">ASTER <span>ATLAS</span></div><p>Research navigation prototype. Not a medical device or a source of clinical advice.</p><a href="#home">BACK TO TOP ↑</a></footer>
+    </main>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
