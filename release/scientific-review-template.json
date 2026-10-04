@@ -1,0 +1,693 @@
+{
+  "schemaVersion": 1,
+  "graphCheckedAt": "2026-10-04",
+  "status": "pending-independent-review",
+  "records": [
+    {
+      "claimId": "frda-fxn",
+      "claim": "FRDA is associated with biallelic pathogenic FXN variants.",
+      "relationshipType": "genetic basis",
+      "evidenceStatus": "direct",
+      "limitations": "No individual variant interpretation.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "fxn-gaa-class",
+      "claim": "GAA-repeat expansion is an FXN pathogenic variant class.",
+      "relationshipType": "pathogenic variant class",
+      "evidenceStatus": "direct",
+      "limitations": "Other pathogenic FXN variants exist.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "fxn-fes",
+      "claim": "Frataxin supports Fe–S cluster synthesis.",
+      "relationshipType": "protein function",
+      "evidenceStatus": "direct",
+      "limitations": "Gene/protein distinction is simplified for family readers.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "variant-mechanism",
+      "claim": "Pathogenic FXN expansion can silence expression, affecting frataxin-dependent Fe–S biology.",
+      "relationshipType": "variant-effect pathway",
+      "evidenceStatus": "direct",
+      "limitations": "A simplified pathway, not an individual disease-severity prediction.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-gene",
+      "claim": "The studied myopathy group had an intronic ISCU mutation.",
+      "relationshipType": "genetic basis",
+      "evidenceStatus": "direct",
+      "limitations": "Small founder-group study, not all myopathies.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-variant",
+      "claim": "The studied ISCU intronic defect alters splicing.",
+      "relationshipType": "studied variant class",
+      "evidenceStatus": "direct",
+      "limitations": "Historical variant notation; no patient testing interpretation.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        },
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-fes",
+      "claim": "ISCU interacts with frataxin in Fe–S biogenesis.",
+      "relationshipType": "protein interaction",
+      "evidenceStatus": "direct",
+      "limitations": "A shared process does not establish interchangeable intervention.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "frda-iscu-mechanism",
+      "claim": "FRDA and the studied ISCU myopathy involve related Fe–S biology.",
+      "relationshipType": "mechanism-level research connection",
+      "evidenceStatus": "inferred",
+      "limitations": "Related mechanism, distinct disease; no validated cross-disease reuse.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-comparison",
+      "claim": "ISCU myopathy adds a distinct disease context for studying Fe–S biogenesis.",
+      "relationshipType": "supports mechanistic comparison",
+      "evidenceStatus": "inferred",
+      "limitations": "A research comparison, not interchangeable disease models.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "mechanism-claim",
+      "claim": "The protein interaction supports a mechanistic comparison.",
+      "relationshipType": "supports comparison",
+      "evidenceStatus": "inferred",
+      "limitations": "The collaboration proposal is an inference.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "frda-ataxia",
+      "claim": "Progressive ataxia occurs in FRDA.",
+      "relationshipType": "reported phenotype",
+      "evidenceStatus": "direct",
+      "limitations": "Not a personal prognosis.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "frda-cardiomyopathy",
+      "claim": "Hypertrophic cardiomyopathy occurs in FRDA.",
+      "relationshipType": "reported phenotype",
+      "evidenceStatus": "direct",
+      "limitations": "Not present in every individual.",
+      "sources": [
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-exercise",
+      "claim": "Severe exercise intolerance was reported in the studied ISCU group.",
+      "relationshipType": "reported phenotype",
+      "evidenceStatus": "direct",
+      "limitations": "Study-specific, not an individual prediction.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-myoglobinuria",
+      "claim": "Myoglobinuria was reported in the studied ISCU group.",
+      "relationshipType": "reported phenotype",
+      "evidenceStatus": "direct",
+      "limitations": "Study-specific.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "iscu-lactate",
+      "claim": "ISCU myopathy is described with lactic acidosis.",
+      "relationshipType": "reported phenotype",
+      "evidenceStatus": "direct",
+      "limitations": "Does not classify every ISCU phenotype.",
+      "sources": [
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "tissue-difference",
+      "claim": "Abnormal ISCU splicing was greatest in mature muscle; fibroblasts retained more normal transcript.",
+      "relationshipType": "limits model transfer",
+      "evidenceStatus": "direct",
+      "limitations": "One non-Swedish case; cell type and differentiation must be checked.",
+      "sources": [
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "model-counterexample",
+      "claim": "The guide reports a fibroblast/iPSC model example without detectable ISC defects.",
+      "relationshipType": "counterexample to universal assay signal",
+      "evidenceStatus": "contradictory",
+      "limitations": "Curator summary of Hick et al.; not a test of FACLR lines or a refutation of FRDA mechanism.",
+      "sources": [
+        {
+          "sourceId": "fara-assays",
+          "title": "Assays to Measure Downstream Consequences of Frataxin Deficiency",
+          "url": "https://www.curefa.org/wp-content/uploads/2024/03/Assays-Measure-Downstream-Effects-Frataxin.pdf"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "frda-assay-resource",
+      "claim": "The FARA guide includes aconitase activity as an Fe–S-related readout.",
+      "relationshipType": "existing research resource",
+      "evidenceStatus": "direct",
+      "limitations": "Catalog entry, not a validated cross-disease assay.",
+      "sources": [
+        {
+          "sourceId": "fara-assays",
+          "title": "Assays to Measure Downstream Consequences of Frataxin Deficiency",
+          "url": "https://www.curefa.org/wp-content/uploads/2024/03/Assays-Measure-Downstream-Effects-Frataxin.pdf"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "mechanism-asset-proposal",
+      "claim": "Review FACLR cells for a comparison with an appropriate ISCU model.",
+      "relationshipType": "candidate asset for review",
+      "evidenceStatus": "inferred",
+      "limitations": "No ISCU lines are asserted in FACLR; access and assay signal must be confirmed.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        },
+        {
+          "sourceId": "faclr-owner",
+          "title": "Cell Line Repository",
+          "url": "https://labs.utsouthwestern.edu/napierala-lab/cell-line-repository"
+        },
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "fara-faclr",
+      "claim": "FARA collaborated in establishing the repository.",
+      "relationshipType": "resource collaboration",
+      "evidenceStatus": "direct",
+      "limitations": "Current stock and access remain owner-controlled.",
+      "sources": [
+        {
+          "sourceId": "fara-directed",
+          "title": "FARA Directed Research",
+          "url": "https://www.curefa.org/research/initiatives/fara-directed-research/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "faclr-partner",
+      "claim": "The repository names Marek Napierala as the contact for available lines.",
+      "relationshipType": "public resource contact",
+      "evidenceStatus": "direct",
+      "limitations": "Contact listing is not consent to collaborate.",
+      "sources": [
+        {
+          "sourceId": "faclr-owner",
+          "title": "Cell Line Repository",
+          "url": "https://labs.utsouthwestern.edu/napierala-lab/cell-line-repository"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "faclr-access",
+      "claim": "Repository access requires an MTA; request terms before planning reuse.",
+      "relationshipType": "access condition",
+      "evidenceStatus": "direct",
+      "limitations": "Fees and availability must be confirmed with the owner.",
+      "sources": [
+        {
+          "sourceId": "fara-directed",
+          "title": "FARA Directed Research",
+          "url": "https://www.curefa.org/research/initiatives/fara-directed-research/"
+        },
+        {
+          "sourceId": "faclr-owner",
+          "title": "Cell Line Repository",
+          "url": "https://labs.utsouthwestern.edu/napierala-lab/cell-line-repository"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "partner-action",
+      "claim": "Ask the repository contact and an ISCU expert to review model/readout suitability.",
+      "relationshipType": "proposed next action",
+      "evidenceStatus": "inferred",
+      "limitations": "An unsent research-review request, not an agreed collaboration.",
+      "sources": [
+        {
+          "sourceId": "faclr-owner",
+          "title": "Cell Line Repository",
+          "url": "https://labs.utsouthwestern.edu/napierala-lab/cell-line-repository"
+        },
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "review-milestone",
+      "claim": "A written review can decide whether to design, revise, or decline a shared pilot.",
+      "relationshipType": "proposed decision",
+      "evidenceStatus": "inferred",
+      "limitations": "Expert review and eventual experiments remain necessary.",
+      "sources": [
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        },
+        {
+          "sourceId": "fara-assays",
+          "title": "Assays to Measure Downstream Consequences of Frataxin Deficiency",
+          "url": "https://www.curefa.org/wp-content/uploads/2024/03/Assays-Measure-Downstream-Effects-Frataxin.pdf"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "unified-frda",
+      "claim": "UNIFIED is an observational FRDA registry, recruiting at this check.",
+      "relationshipType": "study focus",
+      "evidenceStatus": "direct",
+      "limitations": "Not an ISCU study; recruitment and eligibility require live confirmation.",
+      "sources": [
+        {
+          "sourceId": "ct-unified",
+          "title": "UNIFIED Natural History Study · NCT06016946",
+          "url": "https://clinicaltrials.gov/study/NCT06016946"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "fara-unified",
+      "claim": "FARA is the registered UNIFIED lead sponsor.",
+      "relationshipType": "study sponsor",
+      "evidenceStatus": "direct",
+      "limitations": "No endorsement of this proposal is implied.",
+      "sources": [
+        {
+          "sourceId": "ct-unified",
+          "title": "UNIFIED Natural History Study · NCT06016946",
+          "url": "https://clinicaltrials.gov/study/NCT06016946"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "lynch-unified",
+      "claim": "David Lynch is a listed UNIFIED principal investigator.",
+      "relationshipType": "principal investigator",
+      "evidenceStatus": "direct",
+      "limitations": "This does not imply ISCU specialization or participation in this proposal.",
+      "sources": [
+        {
+          "sourceId": "ct-unified",
+          "title": "UNIFIED Natural History Study · NCT06016946",
+          "url": "https://clinicaltrials.gov/study/NCT06016946"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "publication-mechanism",
+      "claim": "Mochel and colleagues report the ISCU–frataxin relationship.",
+      "relationshipType": "supporting publication",
+      "evidenceStatus": "direct",
+      "limitations": "Primary biochemical/genetic study; no shared-treatment claim.",
+      "sources": [
+        {
+          "sourceId": "mochel-2008",
+          "title": "Splice Mutation in the Iron-Sulfur Cluster Scaffold Protein ISCU Causes Myopathy with Exercise Intolerance",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427212/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "publication-limit",
+      "claim": "Sanaker and colleagues report tissue-dependent ISCU splicing.",
+      "relationshipType": "supporting publication",
+      "evidenceStatus": "direct",
+      "limitations": "Limited patient sample.",
+      "sources": [
+        {
+          "sourceId": "sanaker-2010",
+          "title": "Differences in RNA processing underlie the tissue specific phenotype of ISCU myopathy",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20206689/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "at-atm",
+      "claim": "A-T is associated with ATM.",
+      "relationshipType": "genetic basis",
+      "evidenceStatus": "direct",
+      "limitations": "Not a diagnosis.",
+      "sources": [
+        {
+          "sourceId": "gr-at",
+          "title": "Ataxia-Telangiectasia",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26468/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    },
+    {
+      "claimId": "at-rejected",
+      "claim": "The curated evidence does not establish an A-T route for this Fe–S model-reuse proposal.",
+      "relationshipType": "insufficient support for this opportunity",
+      "evidenceStatus": "unsupported",
+      "limitations": "This rejects the current symptom-only proposal, not all possible FRDA–A-T biology.",
+      "sources": [
+        {
+          "sourceId": "gr-at",
+          "title": "Ataxia-Telangiectasia",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26468/"
+        },
+        {
+          "sourceId": "gr-frda",
+          "title": "Friedreich Ataxia",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1281/"
+        }
+      ],
+      "decision": null,
+      "reviewer": {
+        "name": "",
+        "role": ""
+      },
+      "reviewedAt": null,
+      "note": ""
+    }
+  ]
+}
