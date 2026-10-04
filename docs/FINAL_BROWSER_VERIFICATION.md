@@ -2,7 +2,7 @@
 
 Observed October 4, 2026 against the locally served build at `http://127.0.0.1:4173/`—never `file://`.
 
-- Build fingerprint: `sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320`
+- Build fingerprint: `sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3`
 - Browser: Codex in-app Chromium; exact engine version was not exposed by the available browser interface.
 - Evidence images: `design/judge-desktop-final.png` and `design/judge-mobile-final.png`
 - Scope: targeted browser, responsive, keyboard, dialog, reflow, reduced-motion, fallback, and console smoke checks. This is not a WCAG certification or a five-person usability study.

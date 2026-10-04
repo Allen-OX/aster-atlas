@@ -19,7 +19,7 @@ test('trusted journey edges carry inspectable claim-level evidence', () => {
     assert.ok(edge.claim);
     assert.ok(edge.evidenceType);
     assert.ok(['direct', 'registry', 'organization'].includes(edge.evidenceStatus));
-    assert.equal(edge.reviewStatus, 'human-reviewed');
+    assert.equal(edge.reviewStatus, 'source-checked-by-ai;expert-review-pending');
     assert.ok(edge.limitations);
   }
 });
@@ -40,12 +40,12 @@ test('the patient action is source-bound and avoids clinical eligibility claims'
   assert.deepEqual(validateCaseStudy(caseStudy, graph), []);
 });
 
-test('Codex extraction records preserve source input and human review', () => {
+test('Codex extraction records preserve source input and disclose pending human review', () => {
   assert.ok(openAiExtractionRecords.length >= 3);
   for (const record of openAiExtractionRecords) {
     assert.equal(record.tool, 'OpenAI Codex');
     assert.equal(record.mode, 'build-time structured extraction');
-    assert.equal(record.reviewStatus, 'human-reviewed');
+    assert.equal(record.reviewStatus, 'source-checked-by-ai;expert-review-pending');
     assert.ok(sources.some(source => source.id === record.sourceId));
     assert.ok(record.inputExcerpt.length > 0);
     assert.ok(record.output.edgeId);
@@ -67,4 +67,42 @@ test('validation rejects an unsupported or clinically unsafe action', () => {
   const unsafe = structuredClone(caseStudy);
   unsafe.action.text = 'Enroll this patient in treatment now.';
   assert.ok(validateCaseStudy(unsafe, graph).some(error => /clinical action/i.test(error)));
+});
+
+test('validation fails closed when citations, routes, action type, or the 10-to-1 hypothesis are mutated', () => {
+  const emptyActionSources = structuredClone(caseStudy);
+  emptyActionSources.action.sourceIds = [];
+  assert.ok(validateCaseStudy(emptyActionSources, graph).some(error => /action sources/i.test(error)));
+
+  const uncitedGraph = structuredClone(graph);
+  uncitedGraph.edges.find(edge => edge.id === caseStudy.evidenceEdgeIds[0]).sourceIds = [];
+  assert.ok(validateCaseStudy(caseStudy, uncitedGraph).some(error => /edge sources/i.test(error)));
+
+  const unsupportedHop = structuredClone(caseStudy);
+  unsupportedHop.routes[0].nodeIds[1] = 'fara-assets';
+  assert.ok(validateCaseStudy(unsupportedHop, graph).some(error => /route hop/i.test(error)));
+
+  const inflatedImpact = structuredClone(caseStudy);
+  inflatedImpact.impact.baselineWeeks = 100;
+  assert.ok(validateCaseStudy(inflatedImpact, graph).some(error => /10.*1|hypothesis/i.test(error)));
+
+  const unsafeQualification = structuredClone(caseStudy);
+  unsafeQualification.action.text = 'Tell Maria she qualifies and should join the study now.';
+  assert.ok(validateCaseStudy(unsafeQualification, graph).some(error => /clinical action/i.test(error)));
+
+  const unsafeType = structuredClone(caseStudy);
+  unsafeType.action.type = 'enroll-in-study';
+  assert.ok(validateCaseStudy(unsafeType, graph).some(error => /action type/i.test(error)));
+});
+
+test('every displayed route hop is backed by the edge declared beside it', () => {
+  const edgeById = new Map(edges.map(edge => [edge.id, edge]));
+  for (const route of caseStudy.routes) {
+    assert.equal(route.edgeIds.length, route.nodeIds.length - 1);
+    route.edgeIds.forEach((edgeId, index) => {
+      const edge = edgeById.get(edgeId);
+      assert.ok(edge, `${route.id}: missing ${edgeId}`);
+      assert.deepEqual(new Set([edge.from, edge.to]), new Set(route.nodeIds.slice(index, index + 2)), `${route.id}: unsupported hop`);
+    });
+  }
 });

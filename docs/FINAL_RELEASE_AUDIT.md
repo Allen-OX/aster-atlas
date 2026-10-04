@@ -1,7 +1,7 @@
 # Aster Atlas final release audit
 
 Audit date: October 4, 2026
-Audited runtime fingerprint: `sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320`
+Audited runtime fingerprint: `sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3`
 
 ## Release decision
 

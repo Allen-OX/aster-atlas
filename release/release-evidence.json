@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "build": {
-    "fingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320",
-    "generatedAt": "2026-10-04T10:42:51.000Z"
+    "fingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+    "generatedAt": "2026-10-04T10:48:06.000Z"
   },
   "gates": [
     {
@@ -15,8 +15,8 @@
         {
           "kind": "test-report",
           "path": "release-audit/latest/audit.json",
-          "recordedAt": "2026-10-04T10:42:51.000Z",
-          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
+          "recordedAt": "2026-10-04T10:48:06.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3"
         }
       ]
     },
@@ -30,20 +30,20 @@
         {
           "kind": "browser-verification-report",
           "path": "docs/FINAL_BROWSER_VERIFICATION.md",
-          "recordedAt": "2026-10-04T10:42:51.000Z",
-          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
+          "recordedAt": "2026-10-04T10:48:06.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3"
         },
         {
           "kind": "desktop-screenshot",
           "path": "design/judge-desktop-final.png",
-          "recordedAt": "2026-10-04T10:42:51.000Z",
-          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
+          "recordedAt": "2026-10-04T10:48:06.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3"
         },
         {
           "kind": "mobile-screenshot",
           "path": "design/judge-mobile-final.png",
-          "recordedAt": "2026-10-04T10:42:51.000Z",
-          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
+          "recordedAt": "2026-10-04T10:48:06.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3"
         }
       ]
     },

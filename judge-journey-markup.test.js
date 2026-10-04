@@ -14,6 +14,7 @@ test('the patient action journey precedes the visual atlas', () => {
   assert.ok(journey >= 0, 'patient journey is missing');
   assert.ok(atlas >= 0, 'atlas is missing');
   assert.ok(journey < atlas, 'patient journey must come before the atlas');
+  assert.match(html, /MARIA \/ PATIENT-ORGANIZATION LEADER \/ ILLUSTRATIVE PERSONA/);
 });
 
 test('the judge journey exposes action, evidence, uncertainty, and impact landmarks', () => {

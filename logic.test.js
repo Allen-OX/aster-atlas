@@ -1,8 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateGraph, searchNodes, shortestPath, connections, parseRouteQuery } from './logic.js';
+import { edges } from './data.js';
 
 test('every entity and connection has an existing public source', () => assert.deepEqual(validateGraph(), []));
+test('every relationship exposes claim-level evidence and limitations', () => {
+  for (const edge of edges) {
+    for (const key of ['claim', 'evidenceType', 'evidenceStatus', 'reviewStatus', 'limitations']) {
+      assert.equal(typeof edge[key], 'string', `${edge.id} is missing ${key}`);
+      assert.ok(edge[key].trim(), `${edge.id} has empty ${key}`);
+    }
+    assert.equal(edge.reviewStatus, 'source-checked-by-ai;expert-review-pending', `${edge.id} must disclose that expert review remains pending`);
+  }
+});
 test('search resolves disease, gene, symptom and registry language', () => {
   assert.equal(searchNodes('friedreich')[0].id, 'frda');
   assert.equal(searchNodes('frataxin')[0].id, 'fxn');

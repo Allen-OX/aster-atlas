@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "buildFingerprint": "unverified-local-build",
+  "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
   "openAiDisclosure": "OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.",
   "repository": {
     "status": "pending-external",

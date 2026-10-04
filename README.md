@@ -2,6 +2,8 @@
 
 An original solo Hack-Nation 7 prototype for **Buffalo Initiative × OpenAI: AI Atlas for the World's Rare Diseases**. Aster Atlas is a “Google Maps for rare-disease research”: it turns a deliberately small, source-linked evidence graph into an inspectable patient-organization journey, a cinematic 3D constellation, a keyboard-accessible index, and a source-bound next action.
 
+**Live judge build:** https://allen-ox.github.io/aster-atlas/
+
 ## Run locally
 
 Run `npm start`, then open http://127.0.0.1:4173. `npm test` runs the JavaScript checks, `npm run test:server` runs the disposable local-service checks, and `npm run verify` runs both. `npm run audit:release -- --output release-audit/latest` adds deterministic build fingerprinting, isolated-copy smoke tests, configured secret scanning, media parity, release-gate validation, and submission-package validation. No build process, credential, or runtime external API is required. Three.js 0.186.1 and OrbitControls are vendored under their MIT license in `vendor/three/`; application files and renderer load locally.
@@ -24,7 +26,7 @@ Dataset generation: retrieve the linked primary/owner sources, preserve short pa
 
 `npm test` runs all JavaScript checks. `python3 -m unittest universe_server_test.py` exercises isolated local service state. Source-review evidence, actual browser checks, external gates, and draft scripts are in `docs/WIN_READINESS_STATUS.md`, `docs/WIN_READINESS_VERIFICATION.md`, and `docs/SUBMISSION_SCRIPTS.md`. The user's complete specification is preserved in `docs/WIN_READINESS_SPEC.md`.
 
-**Release status:** local candidate, not submission-ready. Expert approval, resource-owner confirmation, sponsor interpretation of OpenAI eligibility, five-person unfamiliar-user testing, a public repository and deployment, accepted photo, current-build videos, and both submission confirmations remain open. The machine-readable status lives in `release/release-evidence.json` and `release/submission-checklist.json`; the final procedure is `docs/FINAL_RELEASE_CHECKLIST.md`.
+**Release status:** implementation-audited candidate. Expert approval, resource-owner confirmation, sponsor interpretation of OpenAI eligibility, five-person unfamiliar-user testing, accepted photo, current-build videos, and both submission confirmations remain open until their authentic proof exists. The machine-readable status lives in `release/release-evidence.json` and `release/submission-checklist.json`; the final procedure is `docs/FINAL_RELEASE_CHECKLIST.md`.
 
 ## Earlier exploration snapshot (retained)
 
@@ -53,7 +55,7 @@ No pointer history is persisted or transmitted. Graph analytics are computed loc
 
 ## Project status
 
-- Local prototype; the code remains unpublished.
+- Public source and judge deployment are published from the audited release branch. The GitHub Pages build exposes the public evidence experience; the optional local account workspace still requires `npm start` and is not a hosted service.
 - Existing submission videos in `submission-media/` show the earlier design and should be regenerated for this revision before submission.
 - The project is separate from the cybersecurity sandbox at port 4180. Its organizational simulation tests are unrelated to this challenge's acceptance.
 - See `design/REDESIGN_NOTES.md` for scope and review criteria, and `design/VERIFICATION.md` for executed visual checks.

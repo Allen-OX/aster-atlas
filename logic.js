@@ -15,6 +15,8 @@ export function validateGraph() {
   for (const edge of edges) {
     if (!byId.has(edge.from) || !byId.has(edge.to)) errors.push(`Broken edge: ${edge.id}`);
     if (!edge.sourceIds?.length) errors.push(`Uncited edge: ${edge.id}`);
+    for (const key of ['claim', 'evidenceType', 'evidenceStatus', 'reviewStatus', 'limitations']) if (typeof edge[key] !== 'string' || !edge[key].trim()) errors.push(`Incomplete evidence metadata ${key}: ${edge.id}`);
+    if (!['human-reviewed','source-checked-by-ai;expert-review-pending'].includes(edge.reviewStatus)) errors.push(`Unreviewed edge: ${edge.id}`);
     for (const id of edge.sourceIds || []) if (!sourceById.has(id)) errors.push(`Missing source ${id}`);
   }
   return errors;

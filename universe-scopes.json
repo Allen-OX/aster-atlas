@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "checkedAt": "2026-10-04",
+  "layerIds": [
+    "shell",
+    "structure",
+    "core",
+    "detail"
+  ],
+  "limits": {
+    "maxBytes": 65536,
+    "maxNodes": 64,
+    "maxEdges": 128,
+    "maxCoordinate": 100,
+    "maxNameLength": 80,
+    "maxQueryLength": 240
+  },
+  "universes": {
+    "conditions": {
+      "nodeIds": [
+        "frda",
+        "at",
+        "fxn",
+        "atm",
+        "ataxia",
+        "cardio",
+        "unified",
+        "fara",
+        "fxn-gaa"
+      ],
+      "edgeIds": [
+        "frda-fxn",
+        "at-atm",
+        "frda-ataxia",
+        "at-ataxia",
+        "frda-cardio",
+        "frda-unified",
+        "frda-fara",
+        "frda-at",
+        "frda-fxn-gaa",
+        "fxn-gaa-fxn",
+        "unified-fara"
+      ],
+      "sourceIds": [
+        "gr-frda",
+        "gr-at",
+        "ct-unified",
+        "fara"
+      ],
+      "types": [
+        "disease",
+        "gene",
+        "organization",
+        "phenotype",
+        "study",
+        "variant"
+      ],
+      "strengths": [
+        "cross-source inference",
+        "documented",
+        "organization",
+        "registry"
+      ],
+      "primaryNodeIds": [
+        "frda",
+        "at"
+      ]
+    },
+    "genes": {
+      "nodeIds": [
+        "frda",
+        "at",
+        "fxn",
+        "atm",
+        "fxn-gaa",
+        "fes-mechanism"
+      ],
+      "edgeIds": [
+        "frda-fxn",
+        "at-atm",
+        "frda-at",
+        "frda-fxn-gaa",
+        "fxn-gaa-fxn",
+        "fxn-fes"
+      ],
+      "sourceIds": [
+        "gr-frda",
+        "gr-at"
+      ],
+      "types": [
+        "disease",
+        "gene",
+        "mechanism",
+        "variant"
+      ],
+      "strengths": [
+        "cross-source inference",
+        "documented"
+      ],
+      "primaryNodeIds": [
+        "fxn",
+        "atm"
+      ]
+    },
+    "phenotypes": {
+      "nodeIds": [
+        "frda",
+        "at",
+        "ataxia",
+        "cardio"
+      ],
+      "edgeIds": [
+        "frda-ataxia",
+        "at-ataxia",
+        "frda-cardio",
+        "frda-at"
+      ],
+      "sourceIds": [
+        "gr-frda",
+        "gr-at"
+      ],
+      "types": [
+        "disease",
+        "phenotype"
+      ],
+      "strengths": [
+        "cross-source inference",
+        "documented"
+      ],
+      "primaryNodeIds": [
+        "ataxia",
+        "cardio"
+      ]
+    },
+    "studies": {
+      "nodeIds": [
+        "frda",
+        "unified",
+        "fara",
+        "lynch"
+      ],
+      "edgeIds": [
+        "frda-unified",
+        "frda-fara",
+        "unified-fara",
+        "unified-lynch"
+      ],
+      "sourceIds": [
+        "gr-frda",
+        "ct-unified",
+        "fara"
+      ],
+      "types": [
+        "disease",
+        "investigator",
+        "organization",
+        "study"
+      ],
+      "strengths": [
+        "organization",
+        "registry"
+      ],
+      "primaryNodeIds": [
+        "unified"
+      ]
+    },
+    "community": {
+      "nodeIds": [
+        "frda",
+        "unified",
+        "fara",
+        "fara-assets"
+      ],
+      "edgeIds": [
+        "frda-unified",
+        "frda-fara",
+        "fara-assets-fara",
+        "unified-fara"
+      ],
+      "sourceIds": [
+        "gr-frda",
+        "ct-unified",
+        "fara",
+        "fara-resources"
+      ],
+      "types": [
+        "asset",
+        "disease",
+        "organization",
+        "study"
+      ],
+      "strengths": [
+        "organization",
+        "registry"
+      ],
+      "primaryNodeIds": [
+        "fara"
+      ]
+    }
+  }
+}

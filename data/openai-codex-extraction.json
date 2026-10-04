@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-04",
+  "boundary": "OpenAI Codex assisted implementation and build-time structured extraction from selected public-source passages. No runtime model or paid API call is used. Independent domain-expert review and the exact model identifier were not recorded; this is not live inference.",
+  "records": [
+    {
+      "id": "codex-frda-variant",
+      "tool": "OpenAI Codex",
+      "mode": "build-time structured extraction",
+      "sourceId": "gr-frda",
+      "inputExcerpt": "The pathogenic expanded GAA repeat results in transcriptional silencing of FXN.",
+      "output": {
+        "edgeId": "fxn-gaa-fxn",
+        "subjectId": "fxn-gaa",
+        "relation": "transcriptional silencing",
+        "objectId": "fxn"
+      },
+      "reviewStatus": "source-checked-by-ai;expert-review-pending",
+      "reviewerNote": "Retained as a general disease-mechanism relationship; no individual interpretation."
+    },
+    {
+      "id": "codex-frda-mechanism",
+      "tool": "OpenAI Codex",
+      "mode": "build-time structured extraction",
+      "sourceId": "gr-frda",
+      "inputExcerpt": "Frataxin is required for the synthesis of iron-sulfur clusters.",
+      "output": {
+        "edgeId": "fxn-fes",
+        "subjectId": "fxn",
+        "relation": "frataxin deficiency mechanism",
+        "objectId": "fes-mechanism"
+      },
+      "reviewStatus": "source-checked-by-ai;expert-review-pending",
+      "reviewerNote": "Bound to the GeneReviews mechanism summary and limited against treatment inference."
+    },
+    {
+      "id": "codex-unified-sponsor",
+      "tool": "OpenAI Codex",
+      "mode": "build-time structured extraction",
+      "sourceId": "ct-unified",
+      "inputExcerpt": "Lead sponsor: Friedreich's Ataxia Research Alliance.",
+      "output": {
+        "edgeId": "unified-fara",
+        "subjectId": "unified",
+        "relation": "lead sponsor",
+        "objectId": "fara"
+      },
+      "reviewStatus": "source-checked-by-ai;expert-review-pending",
+      "reviewerNote": "Registry field copied as a sponsor relationship; live record remains authoritative."
+    }
+  ]
+}

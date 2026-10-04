@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas runtime verification</title>
+<style>
+body{font:15px/1.5 system-ui,sans-serif;background:#111620;color:#e1e6ef;margin:24px}button{padding:10px 14px;margin:4px;border:1px solid #83946b;background:#263221;color:#efffcf;border-radius:6px}button:disabled{opacity:.4}a{color:#d4ecac}#stage{height:420px;position:relative;max-width:1000px;border:1px solid #536273;border-radius:12px;overflow:hidden}canvas{width:100%;height:100%;display:block}#labels{position:absolute;inset:0;pointer-events:none}#labels button{font-size:11px;pointer-events:auto}pre{white-space:pre-wrap;background:#172130;padding:16px;max-width:1000px}#status{padding:10px 0;font-weight:600}.test-stage{position:relative;width:320px;height:180px}h1{font-size:25px}
+</style>
+<script type="importmap">{"imports":{"three":"../vendor/three/three.module.js","three/addons/":"../vendor/three/addons/"}}</script>
+<h1>Atlas runtime verification</h1>
+<p>Disposable local fixture. These actions affect only this page’s synthetic atlas. <a href="../index.html">Return to Aster Atlas</a></p>
+<div id="stage"><canvas id="canvas"></canvas><div id="labels"></div></div>
+<div id="status" role="status">Starting…</div>
+<div>
+  <button id="lose" disabled>Lose GPU context</button>
+  <button id="restore" disabled>Restore GPU context</button>
+  <button id="pause" disabled>Pause motion</button>
+  <button id="stall" disabled>Inject visible 1.2 s stall</button>
+  <button id="partial">Test partial initialization cleanup</button>
+</div>
+<p>After loss, rendered frames and sample count must stop. Restore must report restoring then ready with the reflected lighting visible. Pause must hold particle positions. The stall must remain in measured maximum frame interval; its percentile impact depends on sample count.</p>
+<pre id="metrics" aria-label="Runtime metrics"></pre>
+<pre id="checks" role="status">No fault check run yet.</pre>
+<pre id="events" aria-label="Status event history"></pre>
+<script type="module">
+import {createAtlasScene} from '../atlas-scene.js';
+import {nodes,edges} from '../data.js';
+const $=id=>document.getElementById(id),events=[];
+let scene=null,extension=null,lostSnapshot=null,paused=false,postLossCheck=null;
+const log=event=>{events.push({...event,at:new Date().toISOString()});$('events').textContent=JSON.stringify(events,null,2);$('status').textContent=`${event.status}: ${event.message}`;if(event.status==='context-lost'){$('lose').disabled=true;$('restore').disabled=!extension;}if(event.status==='ready'){$('lose').disabled=!extension;$('restore').disabled=true;}};
+try{
+ scene=createAtlasScene({canvas:$('canvas'),container:$('stage'),labels:$('labels'),nodes,edges,onStatus:log});
+ extension=$('canvas').getContext('webgl2')?.getExtension('WEBGL_lose_context');
+ $('lose').disabled=!extension;$('pause').disabled=false;$('stall').disabled=false;
+ if(!extension)$('checks').textContent='WEBGL_lose_context is unavailable in this browser; use the other checks.';
+}catch(error){log({status:'error',message:error.message});}
+const timer=setInterval(()=>{if(scene)$('metrics').textContent=JSON.stringify(scene.getStats(),null,2);},200);
+$('lose').onclick=()=>{
+ extension.loseContext();
+ setTimeout(()=>{
+  lostSnapshot=scene.getStats();
+  postLossCheck=setTimeout(()=>{const after=scene.getStats();$('checks').textContent=JSON.stringify({test:'lost context freezes rendered frames and samples',passed:!after.contextAvailable&&after.renderedFrames===lostSnapshot.renderedFrames&&after.frameSamples===lostSnapshot.frameSamples,before:lostSnapshot,after},null,2);},600);
+ },100);
+};
+$('restore').onclick=()=>{clearTimeout(postLossCheck);extension.restoreContext();};
+$('pause').onclick=()=>{paused=!paused;scene.setPaused(paused);$('pause').textContent=paused?'Resume motion':'Pause motion';};
+$('stall').onclick=()=>{const end=performance.now()+1200;while(performance.now()<end){};$('checks').textContent='Injected a 1.2 second visible main-thread stall. Check maxMs after the next rendered frame.';};
+$('partial').onclick=()=>{
+ const stage=document.createElement('div');stage.className='test-stage';const canvas=document.createElement('canvas'),labels=document.createElement('div');stage.append(canvas,labels);document.body.append(stage);
+ const nativeIntersection=window.IntersectionObserver,nativeResize=window.ResizeObserver;
+ const listeners=new Map(),resizeRecords=[];
+ const add=canvas.addEventListener.bind(canvas),remove=canvas.removeEventListener.bind(canvas);
+ canvas.addEventListener=(type,handler,options)=>{if(!listeners.has(type))listeners.set(type,new Set());listeners.get(type).add(handler);add(type,handler,options);};
+ canvas.removeEventListener=(type,handler,options)=>{listeners.get(type)?.delete(handler);remove(type,handler,options);};
+ let caught=null,unexpected=null;
+ try{
+  window.ResizeObserver=class extends nativeResize{constructor(callback){super(callback);this.check={disconnected:false};resizeRecords.push(this.check);}disconnect(){this.check.disconnected=true;super.disconnect();}};
+  window.IntersectionObserver=class{constructor(){throw new Error('Intentional fixture failure after renderer, labels, listeners, and ResizeObserver initialization.');}};
+  unexpected=createAtlasScene({canvas,container:stage,labels,nodes,edges});
+ }catch(error){caught=error.message;}
+ finally{window.IntersectionObserver=nativeIntersection;window.ResizeObserver=nativeResize;unexpected?.dispose();}
+ const remainingListeners=[...listeners.values()].reduce((sum,set)=>sum+set.size,0);
+ const result={test:'partial factory initialization cleanup',caught,remainingLabels:labels.childElementCount,remainingCanvasListeners:remainingListeners,resizeObservers:resizeRecords.length,allResizeObserversDisconnected:resizeRecords.every(record=>record.disconnected)};
+ result.passed=Boolean(caught?.startsWith('Intentional fixture failure'))&&result.remainingLabels===0&&remainingListeners===0&&resizeRecords.length>0&&result.allResizeObserversDisconnected;
+ $('checks').textContent=JSON.stringify(result,null,2);
+ canvas.getContext('webgl2')?.getExtension('WEBGL_lose_context')?.loseContext();stage.remove();
+};
+window.addEventListener('pagehide',()=>{clearInterval(timer);clearTimeout(postLossCheck);scene?.dispose();},{once:true});
+</script>
+</html>
