@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aster Atlas — Usability study</title>
+  <link rel="stylesheet" href="./usability.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">LOCAL MODERATOR TOOL / NO TELEMETRY</p>
+      <h1>One-minute Judge Mode study</h1>
+      <p>Run five unfamiliar participants on one audited build. Use participant codes only; do not enter names, emails, demographics, or free-form notes.</p>
+    </header>
+
+    <section aria-labelledby="setup-title">
+      <h2 id="setup-title">1. Start a participant</h2>
+      <div class="fields">
+        <label>Participant code <select id="participant-code"></select></label>
+        <label>Build fingerprint <input id="build-fingerprint" value="unverified-local-build" autocomplete="off"></label>
+      </div>
+      <button id="start-session">Open clean Judge Mode and start timer</button>
+      <output id="timer" aria-live="polite">Not running</output>
+    </section>
+
+    <section aria-labelledby="result-title">
+      <h2 id="result-title">2. Record structured results</h2>
+      <div class="fields">
+        <label>Help requests <input id="help-count" type="number" min="0" step="1" value="0"></label>
+        <label>Wrong turns <input id="wrong-turns" type="number" min="0" step="1" value="0"></label>
+      </div>
+      <fieldset><legend>Did the participant complete the journey?</legend><label><input type="radio" name="completed" value="true" required> Yes</label><label><input type="radio" name="completed" value="false"> No</label></fieldset>
+      <fieldset><legend>Which answers were correct?</legend><label><input type="checkbox" data-answer="problem"> Problem</label><label><input type="checkbox" data-answer="opportunity"> Opportunity</label><label><input type="checkbox" data-answer="limitation"> Important limitation</label><label><input type="checkbox" data-answer="nextAction"> Next action</label></fieldset>
+      <button id="complete-session" disabled>Stop timer and save structured result</button>
+      <p id="form-status" role="status"></p>
+    </section>
+
+    <section aria-labelledby="summary-title">
+      <h2 id="summary-title">3. Study status</h2>
+      <output id="study-summary">No completed sessions. The gate remains pending.</output>
+      <div class="actions"><button id="download-study" disabled>Download JSON evidence</button><button id="clear-study" class="secondary">Clear local session</button><a href="./docs/USABILITY_TEST_PROTOCOL.md">Open protocol</a></div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { createUsabilitySession, completeUsabilitySession, serializeUsabilityStudy, summarizeUsabilityStudy } from './usability-study.js';
+
+    const $ = id => document.getElementById(id);
+    const participant = $('participant-code');
+    for (let index = 1; index <= 5; index += 1) participant.add(new Option(`P${index}`, `P${index}`));
+    const sessions = [];
+    let active = null;
+    let timerId = null;
+
+    fetch('./release/release-evidence.json')
+      .then(response => response.json())
+      .then(manifest => { if (manifest.build?.fingerprint) $('build-fingerprint').value = manifest.build.fingerprint; })
+      .catch(() => {});
+
+    function viewport() {
+      return { width: Math.round(window.innerWidth), height: Math.round(window.innerHeight) };
+    }
+
+    function renderSummary() {
+      const summary = summarizeUsabilityStudy(sessions);
+      $('study-summary').textContent = summary.passed
+        ? `${summary.metrics.successes} of 5 passed on one build. Study gate passes.`
+        : `${sessions.length} of 5 recorded. Gate pending: ${summary.reasons.join(' ') || 'complete all required sessions.'}`;
+      $('download-study').disabled = sessions.length === 0;
+    }
+
+    $('start-session').addEventListener('click', () => {
+      try {
+        active = createUsabilitySession({ participantCode: participant.value, buildFingerprint: $('build-fingerprint').value, viewport: viewport(), startedAtMs: Date.now() });
+        window.open('./?no3d=1', '_blank', 'noopener');
+        $('complete-session').disabled = false;
+        $('start-session').disabled = true;
+        $('form-status').textContent = `Timer started for ${active.participantCode}. Do not coach the participant.`;
+        timerId = window.setInterval(() => { $('timer').textContent = `${Math.floor((Date.now() - active.startedAtMs) / 1000)} seconds`; }, 250);
+      } catch (error) {
+        $('form-status').textContent = error.message;
+      }
+    });
+
+    $('complete-session').addEventListener('click', () => {
+      const completed = document.querySelector('input[name="completed"]:checked');
+      if (!completed) { $('form-status').textContent = 'Choose whether the participant completed the journey.'; return; }
+      try {
+        const answers = Object.fromEntries([...document.querySelectorAll('[data-answer]')].map(input => [input.dataset.answer, input.checked]));
+        const finished = completeUsabilitySession(active, { completedAtMs: Date.now(), completedJourney: completed.value === 'true', helpCount: Number($('help-count').value), wrongTurns: Number($('wrong-turns').value), answers });
+        sessions.push(finished);
+        window.clearInterval(timerId);
+        active = null;
+        $('complete-session').disabled = true;
+        $('start-session').disabled = false;
+        $('timer').textContent = 'Not running';
+        $('form-status').textContent = `${finished.participantCode}: ${finished.durationSeconds.toFixed(1)} seconds · ${finished.success ? 'meets criteria' : 'does not meet criteria'}.`;
+        participant.value = `P${Math.min(sessions.length + 1, 5)}`;
+        renderSummary();
+      } catch (error) {
+        $('form-status').textContent = error.message;
+      }
+    });
+
+    $('download-study').addEventListener('click', () => {
+      const blob = new Blob([serializeUsabilityStudy(sessions)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'aster-atlas-usability-study.json';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    $('clear-study').addEventListener('click', () => {
+      if (timerId) window.clearInterval(timerId);
+      sessions.splice(0);
+      active = null;
+      $('complete-session').disabled = true;
+      $('start-session').disabled = false;
+      $('timer').textContent = 'Not running';
+      $('form-status').textContent = 'Local in-memory study cleared.';
+      renderSummary();
+    });
+  </script>
+</body>
+</html>
