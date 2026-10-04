@@ -2,6 +2,9 @@ import { createHash } from 'node:crypto';
 
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
 const releaseState = (state, detail, evidence = []) => ({ state, detail, evidence });
+const completedStatuses = new Set(['pass', 'pending-external', 'fail']);
+
+export const OPENAI_DISCLOSURE = 'OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.';
 
 export function fingerprintFiles(files) {
   const sorted = [...(Array.isArray(files) ? files : [])]
@@ -29,6 +32,78 @@ export function validateMediaRecord(record, fingerprint) {
   else if (record.durationSeconds > 60) errors.push('Media duration exceeds 60 seconds.');
   if (!nonempty(record?.buildFingerprint) || record.buildFingerprint !== fingerprint) errors.push('Media build fingerprint does not match the audited build.');
   return { valid: errors.length === 0, errors };
+}
+
+function proofErrors(proof, fingerprint, label) {
+  const errors = [];
+  if (!proof || typeof proof !== 'object') return [`${label} proof is required.`];
+  for (const field of ['kind', 'path', 'recordedAt', 'buildFingerprint']) {
+    if (!nonempty(proof[field])) errors.push(`${label} proof is missing ${field}.`);
+  }
+  if (proof.completion !== true) errors.push(`${label} proof must record completion.`);
+  if (proof.buildFingerprint !== fingerprint) errors.push(`${label} proof fingerprint does not match the checklist build.`);
+  return errors;
+}
+
+const placeholder = value => nonempty(value) && /\b(?:TODO|TBD|CHANGEME|PLACEHOLDER)\b|example\.com/i.test(value);
+
+export function validateSubmissionChecklist(checklist) {
+  const errors = [];
+  const pending = [];
+  if (!checklist || typeof checklist !== 'object') return { valid: false, ready: false, errors: ['Submission checklist must be an object.'], pending: [] };
+  if (checklist.schemaVersion !== 1) errors.push('Submission checklist schemaVersion must be 1.');
+  if (!nonempty(checklist.buildFingerprint)) errors.push('Submission checklist build fingerprint is required.');
+  if (checklist.openAiDisclosure !== OPENAI_DISCLOSURE) errors.push('OpenAI disclosure must match the verified release wording exactly.');
+  const fingerprint = checklist.buildFingerprint;
+
+  const required = ['repository', 'deployment', 'teamPhoto', 'scientificReview', 'usabilityStudy', 'openAiEligibility', 'hackos', 'organizerForm'];
+  for (const field of required) {
+    const record = checklist[field];
+    if (!record || !completedStatuses.has(record.status)) {
+      errors.push(`${field} has an invalid status.`);
+      continue;
+    }
+    if (record.status === 'pending-external') pending.push(field);
+    if (record.status === 'pass') errors.push(...proofErrors(record.proof, fingerprint, field));
+  }
+
+  if (checklist.repository?.status === 'pass') {
+    if (!/^https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/?$/i.test(checklist.repository.url || '')) errors.push('repository must use a public GitHub HTTPS URL.');
+    if (placeholder(checklist.repository.url)) errors.push('repository URL contains a placeholder.');
+  }
+  if (checklist.deployment?.status === 'pass') {
+    try {
+      const url = new URL(checklist.deployment.url);
+      if (url.protocol !== 'https:' || /^(?:localhost|127\.0\.0\.1|\[::1\])$/i.test(url.hostname)) throw new Error();
+    } catch {
+      errors.push('deployment must use a judge-accessible HTTPS deployment URL.');
+    }
+    if (placeholder(checklist.deployment.url)) errors.push('deployment URL contains a placeholder.');
+  }
+  if (checklist.teamPhoto?.status === 'pass') {
+    if (!nonempty(checklist.teamPhoto.path)) errors.push('teamPhoto path is required.');
+    else if (placeholder(checklist.teamPhoto.path)) errors.push('teamPhoto path contains a placeholder.');
+  }
+
+  const roles = ['team-introduction', 'product-demo', 'technical-walkthrough'];
+  if (!Array.isArray(checklist.videos)) errors.push('videos must be an array.');
+  else {
+    const actualRoles = checklist.videos.map(video => video.role);
+    if (actualRoles.length !== roles.length || new Set(actualRoles).size !== roles.length || roles.some(role => !actualRoles.includes(role))) errors.push('videos must contain exactly the three required roles.');
+    for (const video of checklist.videos) {
+      const label = `video ${video.role || 'unknown'}`;
+      if (!completedStatuses.has(video.status)) errors.push(`${label} has an invalid status.`);
+      else if (video.status === 'pending-external') pending.push(label);
+      else if (video.status === 'pass') {
+        if (!nonempty(video.path)) errors.push(`${label} path is required.`);
+        else if (placeholder(video.path)) errors.push(`${label} path contains a placeholder.`);
+        if (!Number.isFinite(video.durationSeconds) || video.durationSeconds <= 0 || video.durationSeconds > 60) errors.push(`${label} duration must be greater than zero and no longer than 60 seconds.`);
+        if (video.buildFingerprint !== fingerprint) errors.push(`${label} build fingerprint does not match the checklist build.`);
+        errors.push(...proofErrors(video.proof, fingerprint, label));
+      }
+    }
+  }
+  return { valid: errors.length === 0, ready: errors.length === 0 && pending.length === 0, errors, pending };
 }
 
 export function redactFinding(finding) {
@@ -111,6 +186,13 @@ export function composeAuditManifest(input) {
     media: media.length && media.every(item => item.validation.valid)
       ? releaseState('pass', 'All required media records match the build and duration limit.', media)
       : releaseState('pending-external', media.length ? 'Media records are incomplete, stale, or invalid.' : 'Current final-build media is not supplied.', media),
+    submissionPackage: !input.submissionValidation
+      ? releaseState('not-run', 'Submission checklist was not evaluated.')
+      : !input.submissionValidation.valid
+        ? releaseState('fail', `Submission checklist is invalid: ${input.submissionValidation.errors.join(' ')}`)
+        : input.submissionValidation.ready
+          ? releaseState('pass', 'Submission checklist and build-parity proofs are complete.')
+          : releaseState('pending-external', `Submission checklist pending: ${input.submissionValidation.pending.join(', ')}.`),
     publicSources: !sources.length
       ? releaseState('not-run', 'Public source access was not checked.')
       : sourceFailures.length

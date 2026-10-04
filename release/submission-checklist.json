@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "buildFingerprint": "unverified-local-build",
+  "openAiDisclosure": "OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.",
+  "repository": {
+    "status": "pending-external",
+    "url": null,
+    "proof": null
+  },
+  "deployment": {
+    "status": "pending-external",
+    "url": null,
+    "proof": null
+  },
+  "teamPhoto": {
+    "status": "pending-external",
+    "path": null,
+    "proof": null
+  },
+  "scientificReview": {
+    "status": "pending-external",
+    "proof": null
+  },
+  "usabilityStudy": {
+    "status": "pending-external",
+    "proof": null
+  },
+  "openAiEligibility": {
+    "status": "pending-external",
+    "proof": null
+  },
+  "videos": [
+    {
+      "role": "team-introduction",
+      "status": "pending-external",
+      "path": "submission-media/aster-atlas-team.mp4",
+      "durationSeconds": 38,
+      "buildFingerprint": null,
+      "proof": null
+    },
+    {
+      "role": "product-demo",
+      "status": "pending-external",
+      "path": "submission-media/aster-atlas-demo.mp4",
+      "durationSeconds": 36.71,
+      "buildFingerprint": null,
+      "proof": null
+    },
+    {
+      "role": "technical-walkthrough",
+      "status": "pending-external",
+      "path": "submission-media/aster-atlas-tech.mp4",
+      "durationSeconds": 46.67,
+      "buildFingerprint": null,
+      "proof": null
+    }
+  ],
+  "hackos": {
+    "status": "pending-external",
+    "proof": null
+  },
+  "organizerForm": {
+    "status": "pending-external",
+    "proof": null
+  }
+}

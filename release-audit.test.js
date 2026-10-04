@@ -84,3 +84,21 @@ test('public source checks use real bounded HTTP behavior and preserve source id
   assert.deepEqual(good, { sourceId: 'good', url: `${base}/ok`, status: 'reachable', checkedAt: '2026-10-04T08:00:00.000Z', detail: 'HTTP 200' });
   assert.deepEqual(bad, { sourceId: 'bad', url: `${base}/fail`, status: 'unreachable', checkedAt: '2026-10-04T08:00:00.000Z', detail: 'HTTP 503' });
 });
+
+test('an incomplete submission checklist keeps the audit pending even when tests pass', () => {
+  const result = composeAuditManifest({
+    generatedAt: '2026-10-04T08:00:00.000Z',
+    buildFingerprint,
+    git: { commit: 'abc1234', dirty: false },
+    tests: { javascript: { ok: true }, server: { ok: true }, cleanSmoke: { ok: true } },
+    proofArtifacts: [],
+    privacyFindings: [],
+    media: [],
+    sources: [],
+    submissionValidation: { valid: true, ready: false, errors: [], pending: ['repository'] },
+    releaseSummary: { ready: false, dimensions: { 'submission-readiness': 'pending-external' }, totals: { pass: 0, fail: 0, 'pending-external': 1, 'not-run': 0 } },
+  });
+  assert.equal(result.checks.submissionPackage.state, 'pending-external');
+  assert.match(result.checks.submissionPackage.detail, /repository/);
+  assert.equal(result.ready, false);
+});

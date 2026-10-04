@@ -8,6 +8,7 @@ import {
   fingerprintFiles,
   renderAuditMarkdown,
   scanTextForSecrets,
+  validateSubmissionChecklist,
 } from '../release-audit.js';
 import { summarizeRelease, validateReleaseManifest } from '../release-gates.js';
 
@@ -133,6 +134,9 @@ if (javascript.ok && server.ok && clean.ok) {
 const baselineValidation = validateReleaseManifest(baseline);
 if (!baselineValidation.valid) proofArtifacts.push({ path: 'release/release-evidence.json', error: 'Release manifest failed validation' });
 const releaseSummary = summarizeRelease(baseline);
+const submissionChecklist = JSON.parse(await readFile(path.join(root, 'release', 'submission-checklist.json'), 'utf8'));
+submissionChecklist.buildFingerprint = buildFingerprint;
+const submissionValidation = validateSubmissionChecklist(submissionChecklist);
 
 const audit = composeAuditManifest({
   generatedAt,
@@ -143,6 +147,7 @@ const audit = composeAuditManifest({
   privacyFindings,
   media,
   sources,
+  submissionValidation,
   releaseSummary,
 });
 audit.inputs = {
