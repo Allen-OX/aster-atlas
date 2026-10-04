@@ -28,7 +28,11 @@ const aliases = {
   ataxia: ['ataxia', 'coordination', 'movement'],
   cardio: ['cardiomyopathy', 'heart', 'cardiac'],
   unified: ['unified', 'study', 'trial', 'natural history', 'registry'],
-  fara: ['fara', 'community', 'patient organization', 'research alliance']
+  fara: ['fara', 'community', 'patient organization', 'research alliance'],
+  'fxn-gaa': ['gaa repeat', 'repeat expansion', 'fxn expansion', 'variant'],
+  'fes-mechanism': ['iron sulfur', 'iron-sulfur', 'frataxin deficiency', 'mitochondrial mechanism', 'mechanism'],
+  'fara-assets': ['research tools', 'research resources', 'models', 'repositories', 'datasets', 'assets'],
+  lynch: ['david lynch', 'principal investigator', 'researcher', 'investigator']
 };
 
 export function searchNodes(query) {

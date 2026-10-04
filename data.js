@@ -1,6 +1,6 @@
 // A deliberately small, reviewed demo graph. Every biomedical edge names its source.
 // This prototype does not infer a diagnosis, treatment, or trial eligibility.
-export const checkedAt = "2026-10-03";
+export const checkedAt = "2026-10-04";
 
 export const sources = [
   {
@@ -24,7 +24,7 @@ export const sources = [
     title: "UNIFIED Natural History Study · NCT06016946",
     publisher: "ClinicalTrials.gov",
     url: "https://clinicaltrials.gov/study/NCT06016946",
-    updated: "Check live record",
+    updated: "2026-09-01",
     kind: "study registry"
   },
   {
@@ -34,6 +34,14 @@ export const sources = [
     url: "https://www.curefa.org/research/",
     updated: "Check live site",
     kind: "patient and research organization"
+  },
+  {
+    id: "fara-resources",
+    title: "Research Resources",
+    publisher: "Friedreich’s Ataxia Research Alliance",
+    url: "https://www.curefa.org/research/research-resources/",
+    updated: "Check live site",
+    kind: "research asset directory"
   }
 ];
 
@@ -88,23 +96,134 @@ export const nodes = [
     sourceIds: ["ct-unified"]
   },
   {
-    id: "fara", type: "community", label: "FARA", short: "FARA",
+    id: "fara", type: "organization", label: "FARA", short: "FARA",
     x: -0.88, y: 0.55, z: -0.16,
     summary: "A patient and research organization for Friedreich ataxia.",
     detail: "FARA connects the FRDA community with research resources and participation information. This is a resource link, not an endorsement or a care recommendation.",
     sourceIds: ["fara"]
+  },
+  {
+    id: "fxn-gaa", type: "variant", label: "FXN GAA repeat expansion", short: "GAA",
+    x: -0.63, y: -0.12, z: -0.36,
+    summary: "The most common pathogenic variant class reported in Friedreich ataxia.",
+    detail: "GeneReviews reports that a pathogenic GAA repeat expansion in FXN can silence transcription. This record describes a variant class, not an individual result.",
+    sourceIds: ["gr-frda"]
+  },
+  {
+    id: "fes-mechanism", type: "mechanism", label: "Frataxin and iron–sulfur cluster dysfunction", short: "Fe–S",
+    x: -0.18, y: 0.63, z: -0.31,
+    summary: "A reviewed molecular route from reduced frataxin to impaired mitochondrial iron–sulfur cluster function.",
+    detail: "GeneReviews describes frataxin as required for iron–sulfur cluster synthesis and links frataxin deficiency to impaired mitochondrial respiratory function. This is a disease-mechanism summary, not a treatment claim.",
+    sourceIds: ["gr-frda"]
+  },
+  {
+    id: "fara-assets", type: "asset", label: "FARA shared research resources", short: "Assets",
+    x: -0.72, y: 0.76, z: 0.24,
+    summary: "Models, repositories, assays, biomarkers, clinical assessments, and datasets made discoverable for FRDA research.",
+    detail: "FARA's public resource directory describes tools intended to support collaboration and reduce duplicated setup work. Reuse still requires direct review with the resource owner.",
+    sourceIds: ["fara-resources"]
+  },
+  {
+    id: "lynch", type: "investigator", label: "David Lynch, MD, PhD", short: "Lynch",
+    x: 0.26, y: -0.69, z: -0.2,
+    summary: "A principal investigator listed on the UNIFIED natural-history study record.",
+    detail: "ClinicalTrials.gov lists David Lynch of Children's Hospital of Philadelphia as a principal investigator. Contact and study status must be checked on the live registry record.",
+    sourceIds: ["ct-unified"]
   }
 ];
 
 export const edges = [
-  { id: "frda-fxn", from: "frda", to: "fxn", relation: "genetic basis", strength: "documented", sourceIds: ["gr-frda"], note: "GeneReviews links FRDA with biallelic pathogenic variants in FXN." },
+  { id: "frda-fxn", from: "frda", to: "fxn", relation: "genetic basis", strength: "documented", sourceIds: ["gr-frda"], note: "GeneReviews links FRDA with biallelic pathogenic variants in FXN.", claim: "FRDA is associated with biallelic pathogenic FXN variants.", evidenceType: "clinical reference", evidenceStatus: "direct", reviewStatus: "human-reviewed", limitations: "This relationship does not interpret an individual's genetic result." },
   { id: "at-atm", from: "at", to: "atm", relation: "genetic basis", strength: "documented", sourceIds: ["gr-at"], note: "GeneReviews links A-T with biallelic pathogenic variants in ATM." },
   { id: "frda-ataxia", from: "frda", to: "ataxia", relation: "reported phenotype", strength: "documented", sourceIds: ["gr-frda"], note: "Progressive ataxia is described in the FRDA clinical reference." },
   { id: "at-ataxia", from: "at", to: "ataxia", relation: "reported phenotype", strength: "documented", sourceIds: ["gr-at"], note: "Ataxia is described in the A-T clinical reference." },
   { id: "frda-cardio", from: "frda", to: "cardio", relation: "reported phenotype", strength: "documented", sourceIds: ["gr-frda"], note: "Cardiomyopathy is listed among possible FRDA findings." },
-  { id: "frda-unified", from: "frda", to: "unified", relation: "study focus", strength: "registry", sourceIds: ["ct-unified"], note: "The registry identifies FRDA as the focus of the UNIFIED natural-history study." },
-  { id: "frda-fara", from: "frda", to: "fara", relation: "community resource", strength: "organization", sourceIds: ["fara"], note: "FARA describes its FRDA research and community work." },
-  { id: "frda-at", from: "frda", to: "at", relation: "shared phenotype: ataxia", strength: "cross-source inference", sourceIds: ["gr-frda", "gr-at"], note: "Both references describe ataxia. The conditions have different implicated genes; no shared treatment is inferred." }
+  { id: "frda-unified", from: "frda", to: "unified", relation: "natural-history study", strength: "registry", sourceIds: ["ct-unified"], note: "The registry identifies FRDA as the focus of the UNIFIED natural-history study.", claim: "UNIFIED is a registered natural-history study focused on Friedreich ataxia.", evidenceType: "study registry", evidenceStatus: "registry", reviewStatus: "human-reviewed", limitations: "The live record controls current status, sites, and participation requirements; this atlas makes no eligibility determination." },
+  { id: "frda-fara", from: "frda", to: "fara", relation: "community resource", strength: "organization", sourceIds: ["fara"], note: "FARA describes its FRDA research and community work.", claim: "FARA organizes and supports research activity for the Friedreich ataxia community.", evidenceType: "organization website", evidenceStatus: "organization", reviewStatus: "human-reviewed", limitations: "The link identifies a public organization and is not an endorsement or care recommendation." },
+  { id: "frda-at", from: "frda", to: "at", relation: "shared phenotype: ataxia", strength: "cross-source inference", sourceIds: ["gr-frda", "gr-at"], note: "Both references describe ataxia. The conditions have different implicated genes; no shared treatment is inferred.", claim: "FRDA and A-T both include ataxia among their reported phenotypes.", evidenceType: "cross-source comparison", evidenceStatus: "inferred", reviewStatus: "human-reviewed", limitations: "A shared broad phenotype does not establish a shared mechanism, reusable asset, treatment, or collaboration opportunity." },
+  { id: "frda-fxn-gaa", from: "frda", to: "fxn-gaa", relation: "common pathogenic variant class", strength: "documented", sourceIds: ["gr-frda"], note: "GeneReviews identifies pathogenic FXN GAA repeat expansion as the most common FRDA variant class.", claim: "Pathogenic GAA repeat expansion is the most common disease-causing FXN variant class in FRDA.", evidenceType: "clinical reference", evidenceStatus: "direct", reviewStatus: "human-reviewed", limitations: "This population-level statement does not interpret an individual's genotype." },
+  { id: "fxn-gaa-fxn", from: "fxn-gaa", to: "fxn", relation: "transcriptional silencing", strength: "documented", sourceIds: ["gr-frda"], note: "The expanded GAA repeat can reduce FXN transcription.", claim: "Pathogenic FXN GAA repeat expansion can cause transcriptional silencing of FXN.", evidenceType: "clinical reference", evidenceStatus: "direct", reviewStatus: "human-reviewed", limitations: "The graph represents the reviewed mechanism generally and does not quantify expression for an individual." },
+  { id: "fxn-fes", from: "fxn", to: "fes-mechanism", relation: "frataxin deficiency mechanism", strength: "documented", sourceIds: ["gr-frda"], note: "GeneReviews links reduced frataxin with impaired iron–sulfur cluster-containing enzymes and mitochondrial function.", claim: "Frataxin deficiency disrupts iron–sulfur cluster-related enzyme function and mitochondrial respiration in FRDA.", evidenceType: "clinical reference", evidenceStatus: "direct", reviewStatus: "human-reviewed", limitations: "The mechanism summary does not establish that a particular intervention will be effective." },
+  { id: "fara-assets-fara", from: "fara-assets", to: "fara", relation: "resource steward", strength: "organization", sourceIds: ["fara-resources"], note: "FARA publishes shared research resources including models, repositories, assays, biomarkers, assessments, and datasets.", claim: "FARA makes multiple categories of FRDA research resources discoverable to researchers and industry.", evidenceType: "organization resource directory", evidenceStatus: "organization", reviewStatus: "human-reviewed", limitations: "Availability and reuse terms must be confirmed with each resource owner." },
+  { id: "unified-fara", from: "unified", to: "fara", relation: "lead sponsor", strength: "registry", sourceIds: ["ct-unified"], note: "ClinicalTrials.gov identifies FARA as the lead sponsor of UNIFIED.", claim: "FARA is the lead sponsor listed for the UNIFIED natural-history study.", evidenceType: "study registry", evidenceStatus: "registry", reviewStatus: "human-reviewed", limitations: "Sponsor and study status must be verified on the live record." },
+  { id: "unified-lynch", from: "unified", to: "lynch", relation: "principal investigator", strength: "registry", sourceIds: ["ct-unified"], note: "ClinicalTrials.gov lists David Lynch as a principal investigator for UNIFIED.", claim: "David Lynch is listed as a principal investigator for UNIFIED.", evidenceType: "study registry", evidenceStatus: "registry", reviewStatus: "human-reviewed", limitations: "The live registry record is authoritative for current roles and contact routes." }
+];
+
+export const caseStudy = {
+  id: "frda-action-journey",
+  persona: {
+    name: "Maria",
+    role: "patient-organization leader",
+    startingPoint: "A confirmed Friedreich ataxia community seeking a practical route into coordinated research."
+  },
+  headline: "Turn an isolated FRDA diagnosis into a sourced research coordination path.",
+  opportunity: {
+    title: "Reuse existing FRDA research infrastructure",
+    text: "FARA already surfaces shared research tools, and it sponsors the registered UNIFIED natural-history study. The atlas connects the disease mechanism to that existing infrastructure without making a study-eligibility claim."
+  },
+  recommendedNodeIds: ["frda", "fxn", "fxn-gaa", "fes-mechanism", "fara", "fara-assets", "unified", "lynch"],
+  evidenceEdgeIds: ["frda-fxn", "frda-fxn-gaa", "fxn-gaa-fxn", "fxn-fes", "frda-fara", "fara-assets-fara", "frda-unified", "unified-fara", "unified-lynch"],
+  action: {
+    timeframe: "this week",
+    text: "Contact the official FARA or UNIFIED study team through the live source pages and request a research-coordination review: which existing natural-history measures, datasets, or tools can this group align with, and what expert validation is required first?",
+    output: "A documented decision on whether to align data collection with an existing asset, plus the owner and validation questions for the next step.",
+    sourceIds: ["ct-unified", "fara-resources"]
+  },
+  uncertainty: {
+    known: "FXN variation, frataxin deficiency, the iron–sulfur mechanism, FARA resources, and the UNIFIED sponsor/investigator relationships are source-backed in this snapshot.",
+    unknown: "The atlas does not know whether a particular person can participate, whether a specific resource is available, or whether alignment is scientifically appropriate for a proposed project.",
+    validation: "Confirm live study status and ask the sponsor or qualified research team to review reuse, governance, and scientific fit."
+  },
+  rejectedCandidate: {
+    nodeId: "at",
+    edgeId: "frda-at",
+    decision: "not-actionable",
+    reason: "A-T shares the broad ataxia phenotype, but the current graph has no supported shared mechanism or reusable asset. Phenotype overlap alone is insufficient."
+  },
+  impact: {
+    baselineWeeks: 10,
+    assistedWeeks: 1,
+    milestone: "Reach a sourced contact-and-review decision for existing FRDA research infrastructure.",
+    label: "Illustrative coordination hypothesis — not a measured outcome",
+    assumptions: [
+      "The diagnosis and focal research question already exist.",
+      "Public source records remain current and contacts respond.",
+      "The atlas shortens discovery and coordination only; it does not accelerate biological experiments or clinical review."
+    ]
+  }
+};
+
+export const openAiExtractionRecords = [
+  {
+    id: "codex-frda-variant",
+    tool: "OpenAI Codex",
+    mode: "build-time structured extraction",
+    sourceId: "gr-frda",
+    inputExcerpt: "The pathogenic expanded GAA repeat results in transcriptional silencing of FXN.",
+    output: { edgeId: "fxn-gaa-fxn", subjectId: "fxn-gaa", relation: "transcriptional silencing", objectId: "fxn" },
+    reviewStatus: "human-reviewed",
+    reviewerNote: "Retained as a general disease-mechanism relationship; no individual interpretation."
+  },
+  {
+    id: "codex-frda-mechanism",
+    tool: "OpenAI Codex",
+    mode: "build-time structured extraction",
+    sourceId: "gr-frda",
+    inputExcerpt: "Frataxin is required for the synthesis of iron-sulfur clusters.",
+    output: { edgeId: "fxn-fes", subjectId: "fxn", relation: "frataxin deficiency mechanism", objectId: "fes-mechanism" },
+    reviewStatus: "human-reviewed",
+    reviewerNote: "Bound to the GeneReviews mechanism summary and limited against treatment inference."
+  },
+  {
+    id: "codex-unified-sponsor",
+    tool: "OpenAI Codex",
+    mode: "build-time structured extraction",
+    sourceId: "ct-unified",
+    inputExcerpt: "Lead sponsor: Friedreich's Ataxia Research Alliance.",
+    output: { edgeId: "unified-fara", subjectId: "unified", relation: "lead sponsor", objectId: "fara" },
+    reviewStatus: "human-reviewed",
+    reviewerNote: "Registry field copied as a sponsor relationship; live record remains authoritative."
+  }
 ];
 
 export const journeys = {

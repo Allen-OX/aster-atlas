@@ -8,6 +8,10 @@ test('search resolves disease, gene, symptom and registry language', () => {
   assert.equal(searchNodes('frataxin')[0].id, 'fxn');
   assert.equal(searchNodes('heart')[0].id, 'cardio');
   assert.equal(searchNodes('natural history')[0].id, 'unified');
+  assert.equal(searchNodes('GAA repeat')[0].id, 'fxn-gaa');
+  assert.equal(searchNodes('iron sulfur')[0].id, 'fes-mechanism');
+  assert.equal(searchNodes('David Lynch')[0].id, 'lynch');
+  assert.equal(searchNodes('research tools')[0].id, 'fara-assets');
 });
 test('a cross-condition route preserves the intermediate phenotype', () => {
   const route = shortestPath('fxn','atm');
