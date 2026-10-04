@@ -25,7 +25,7 @@ Updated October 4, 2026. This file reports evidence, not a predicted score or pr
 - The scientific-review template covers every claim but contains no fabricated reviewer decision.
 - The anonymous usability harness stores structured participant codes and outcomes, not names, emails, free-form demographics, IP addresses, or remote telemetry.
 - The release auditor fingerprints a sorted allowlist, scans configured secret patterns without printing values, tests a disposable copy, validates media parity, and rejects incomplete submission evidence.
-- The current JavaScript suite contains 107 passing tests. This count is a local implementation result, not evidence of scientific approval or submission completion.
+- The current JavaScript suite contains 113 passing tests. This count is a local implementation result, not evidence of scientific approval or submission completion.
 
 ## Current truthful story
 

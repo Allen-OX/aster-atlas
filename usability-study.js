@@ -2,7 +2,7 @@ const nonempty = value => typeof value === 'string' && value.length > 0;
 const finiteNonnegative = value => Number.isFinite(value) && value >= 0;
 const wholeNonnegative = value => Number.isInteger(value) && value >= 0;
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const personalKey = key => /^(name|email|demographics?|age|gender|sex|ip|ipaddress|notes?|freeform)$/i.test(key);
+const personalKey = key => /(?:name|email|demographic|age|gender|sex|ipaddress|phone|address|note|freeform|biograph)/.test(String(key).replace(/[^a-z]/gi, '').toLowerCase());
 const answerKeys = Object.freeze(['problem', 'opportunity', 'limitation', 'nextAction']);
 
 function containsPersonalFields(value) {
@@ -51,7 +51,7 @@ export function completeUsabilitySession(session, result) {
 
   const durationSeconds = (result.completedAtMs - session.startedAtMs) / 1000;
   const unassisted = result.helpCount === 0;
-  const comprehensionPassed = result.answers.limitation && result.answers.nextAction;
+  const comprehensionPassed = answerKeys.every(key => result.answers[key]);
   const success = result.completedJourney && unassisted && durationSeconds < 60 && comprehensionPassed;
   return Object.freeze({
     ...session,
@@ -79,7 +79,7 @@ export function summarizeUsabilityStudy(sessions) {
   if (builds.size > 1) reasons.push('Every participant must test the same build.');
   if (values.some(session => session?.status !== 'complete')) reasons.push('Every session must be complete.');
   const successes = values.filter(session => session?.success === true).length;
-  if (successes < 4) reasons.push('At least four participants must finish unassisted in under 60 seconds and identify the limitation and next action.');
+  if (successes < 4) reasons.push('At least four participants must finish unassisted in under 60 seconds and identify the problem, opportunity, limitation, and next action.');
   const durations = values
     .map(session => session?.durationSeconds)
     .filter(Number.isFinite)

@@ -1,0 +1,1 @@
+export const OPENAI_DISCLOSURE = 'OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.';

@@ -1,12 +1,15 @@
 import { createHash } from 'node:crypto';
+import { OPENAI_DISCLOSURE } from './openai-disclosure.js';
+export { OPENAI_DISCLOSURE } from './openai-disclosure.js';
 
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
+const validIsoTimestamp = value => nonempty(value)
+  && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value)
+  && Number.isFinite(Date.parse(value));
 const releaseState = (state, detail, evidence = []) => ({ state, detail, evidence });
 const completedStatuses = new Set(['pass', 'pending-external', 'fail']);
 const buildExtensions = new Set(['.html', '.js', '.css', '.json', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.geojson', '.woff2', '.py']);
 const evidenceDirectories = new Set(['.git', '.superpowers', '.aster-state', '__pycache__', 'node_modules', 'release-audit', 'release', 'design', 'docs', 'submission-media']);
-
-export const OPENAI_DISCLOSURE = 'OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.';
 
 export function isBuildArtifactPath(value) {
   const normalized = String(value || '').replaceAll('\\', '/').replace(/^\.\//, '');
@@ -52,6 +55,7 @@ function proofErrors(proof, fingerprint, label) {
   for (const field of ['kind', 'path', 'recordedAt', 'buildFingerprint']) {
     if (!nonempty(proof[field])) errors.push(`${label} proof is missing ${field}.`);
   }
+  if (nonempty(proof.recordedAt) && !validIsoTimestamp(proof.recordedAt)) errors.push(`${label} proof recordedAt must be an ISO-8601 UTC timestamp.`);
   if (proof.completion !== true) errors.push(`${label} proof must record completion.`);
   if (proof.buildFingerprint !== fingerprint) errors.push(`${label} proof fingerprint does not match the checklist build.`);
   return errors;
@@ -76,6 +80,7 @@ export function validateSubmissionChecklist(checklist) {
       continue;
     }
     if (record.status === 'pending-external') pending.push(field);
+    if (record.status === 'fail') errors.push(`${field} has failed.`);
     if (record.status === 'pass') errors.push(...proofErrors(record.proof, fingerprint, field));
   }
 
@@ -106,6 +111,7 @@ export function validateSubmissionChecklist(checklist) {
       const label = `video ${video.role || 'unknown'}`;
       if (!completedStatuses.has(video.status)) errors.push(`${label} has an invalid status.`);
       else if (video.status === 'pending-external') pending.push(label);
+      else if (video.status === 'fail') errors.push(`${label} has failed.`);
       else if (video.status === 'pass') {
         if (!nonempty(video.path)) errors.push(`${label} path is required.`);
         else if (placeholder(video.path)) errors.push(`${label} path contains a placeholder.`);

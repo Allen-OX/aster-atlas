@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { OPENAI_DISCLOSURE } from './openai-disclosure.js';
 
 const html = readFileSync(new URL('./index.html', import.meta.url), 'utf8');
 const app = readFileSync(new URL('./app.js', import.meta.url), 'utf8');
@@ -50,8 +51,9 @@ test('the winning journey renders validated branches and can inspect every graph
 });
 
 test('OpenAI attribution is precise and primary mobile controls meet the 44px target', () => {
-  assert.match(winJourney, /assisted implementation and build-time structured extraction/i);
-  assert.match(winJourney, /no runtime model or paid API call/i);
+  assert.match(winJourney, /import \{ OPENAI_DISCLOSURE \} from '.\/openai-disclosure\.js'/);
+  assert.match(winJourney, /esc\(OPENAI_DISCLOSURE\)/);
+  assert.match(OPENAI_DISCLOSURE, /exact session model identifier is unknown/i);
   assert.match(winCss, /min-height:44px!important/);
 });
 

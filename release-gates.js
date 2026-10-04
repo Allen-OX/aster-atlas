@@ -1,4 +1,7 @@
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
+const validIsoTimestamp = value => nonempty(value)
+  && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value)
+  && Number.isFinite(Date.parse(value));
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const clone = value => structuredClone(value);
 const freeze = value => {
@@ -16,6 +19,7 @@ const proofErrors = (evidence, prefix = 'Evidence') => {
   for (const field of ['kind', 'path', 'recordedAt', 'buildFingerprint']) {
     if (!nonempty(evidence?.[field])) errors.push(`${prefix} is missing ${field}.`);
   }
+  if (nonempty(evidence?.recordedAt) && !validIsoTimestamp(evidence.recordedAt)) errors.push(`${prefix} recordedAt must be an ISO-8601 UTC timestamp.`);
   return errors;
 };
 

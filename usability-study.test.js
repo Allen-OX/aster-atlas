@@ -75,6 +75,15 @@ test('completion requires nonnegative counts and four boolean answers', () => {
   assert.throws(() => completeUsabilitySession(create(), { ...base, answers: { ...base.answers, problem: 'yes' } }), /four comprehension/i);
 });
 
+test('a successful session requires all four comprehension answers', () => {
+  for (const missed of ['problem', 'opportunity', 'limitation', 'nextAction']) {
+    const answers = { problem: true, opportunity: true, limitation: true, nextAction: true, [missed]: false };
+    const session = finish('P1', { result: { answers } });
+    assert.equal(session.comprehensionPassed, false, missed);
+    assert.equal(session.success, false, missed);
+  }
+});
+
 test('exactly four of five unassisted sub-60-second final-build sessions pass', () => {
   const sessions = [1, 2, 3, 4].map(index => finish(`P${index}`));
   sessions.push(finish('P5', { result: { completedAtMs: 72_000 } }));
@@ -110,7 +119,11 @@ test('fewer people, duplicate participants, mixed builds, help, or missed compre
 test('personal or free-form participant fields are rejected and never serialized', () => {
   for (const forbidden of [
     { name: 'Person' },
+    { participantName: 'Person' },
     { email: 'person@example.org' },
+    { phoneNumber: '555-0100' },
+    { mailingAddress: 'Private' },
+    { biography: 'Private' },
     { demographics: { age: 42 } },
     { ipAddress: '127.0.0.1' },
   ]) {

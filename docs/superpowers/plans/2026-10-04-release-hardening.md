@@ -51,7 +51,7 @@ Cover the four legal states, duplicate IDs, missing dimensions, missing proof fi
 
 - [ ] **Step 2: Run the focused test and confirm failure**
 
-Run: `node --test release-gates.test.js`  
+Run: `node --test release-gates.test.js`
 Expected: FAIL because `release-gates.js` does not exist.
 
 - [ ] **Step 3: Implement the pure release-gate model**
@@ -73,7 +73,7 @@ Initialize controllable checks as `not-run` and genuine outside actions as `pend
 
 - [ ] **Step 5: Verify and commit Task 1**
 
-Run: `node --test release-gates.test.js && npm test`  
+Run: `node --test release-gates.test.js && npm test`
 Expected: all tests pass. Commit only the four Task 1 paths with message `feat: add proof-gated release manifest`.
 
 ### Task 2: Scientific review and source-access validation
@@ -97,7 +97,7 @@ Assert exact edge coverage, valid `accept|revise|reject` decisions, reviewer-rol
 
 - [ ] **Step 2: Run the focused test and confirm failure**
 
-Run: `node --test scientific-review.test.js`  
+Run: `node --test scientific-review.test.js`
 Expected: FAIL because the review module does not exist.
 
 - [ ] **Step 3: Implement review validation and source classification**
@@ -120,7 +120,7 @@ Centralize the optional TypeSafe review questions in `docs/AI_REVIEW_DESIGN.md`:
 
 - [ ] **Step 5: Verify and commit Task 2**
 
-Run: `node scripts/export-scientific-review.mjs --check && node --test scientific-review.test.js win-review.test.js win-evidence.test.js`  
+Run: `node scripts/export-scientific-review.mjs --check && node --test scientific-review.test.js win-review.test.js win-evidence.test.js`
 Expected: generated artifacts match the graph and all tests pass. Commit only Task 2 hunks and files with message `feat: validate independent scientific review`.
 
 ### Task 3: Focused and accessible Judge Mode
@@ -144,7 +144,7 @@ Require a visible `Research proposal · expert review pending` status, plain-lan
 
 - [ ] **Step 2: Run journey tests and confirm the new assertions fail**
 
-Run: `node --test judge-journey-markup.test.js win-journey.test.js judge-journey.test.js`  
+Run: `node --test judge-journey-markup.test.js win-journey.test.js judge-journey.test.js`
 Expected: FAIL only on the newly specified Judge Mode contract.
 
 - [ ] **Step 3: Restructure only the first-screen journey**
@@ -157,7 +157,7 @@ Preserve return focus, add cancel/Escape handling, prevent backdrop clicks from 
 
 - [ ] **Step 5: Verify and commit Task 3**
 
-Run: `node --test judge-journey-markup.test.js win-journey.test.js judge-journey.test.js && npm test`  
+Run: `node --test judge-journey-markup.test.js win-journey.test.js judge-journey.test.js && npm test`
 Expected: all tests pass. Commit only Task 3 hunks with message `feat: focus the one-minute judge journey`.
 
 ### Task 4: Anonymous timed usability harness
@@ -181,7 +181,7 @@ Test participant codes `P1`–`P99`, monotonic nonnegative timing, required view
 
 - [ ] **Step 2: Run the focused test and confirm failure**
 
-Run: `node --test usability-study.test.js`  
+Run: `node --test usability-study.test.js`
 Expected: FAIL because `usability-study.js` does not exist.
 
 - [ ] **Step 3: Implement the pure study model**
@@ -201,7 +201,7 @@ The page opens Judge Mode in a new local tab, runs a visible timer, captures onl
 
 - [ ] **Step 5: Verify and commit Task 4**
 
-Run: `node --test usability-study.test.js && python3 -m unittest -v universe_server_test.py && npm test`  
+Run: `node --test usability-study.test.js && python3 -m unittest -v universe_server_test.py && npm test`
 Expected: all tests pass. Commit Task 4 paths with message `feat: add anonymous usability validation`.
 
 ### Task 5: Reproducible release auditor and build parity
@@ -225,7 +225,7 @@ Test sorted-path SHA-256 stability, content-change sensitivity, missing media, d
 
 - [ ] **Step 2: Run the focused test and confirm failure**
 
-Run: `node --test release-audit.test.js`  
+Run: `node --test release-audit.test.js`
 Expected: FAIL because `release-audit.js` does not exist.
 
 - [ ] **Step 3: Implement pure audit helpers and CLI orchestration**
@@ -242,7 +242,7 @@ Add `test:server`, `audit:release`, `audit:sources`, and `verify` scripts. Ignor
 
 - [ ] **Step 6: Verify and commit Task 5**
 
-Run: `node --test release-audit.test.js && npm run verify`  
+Run: `node --test release-audit.test.js && npm run verify`
 Expected: JavaScript and Python suites pass; the release audit exits successfully while accurately reporting external gates as pending. Commit Task 5 paths with message `feat: add reproducible release audit`.
 
 ### Task 6: Submission package and truthful status synchronization
@@ -266,7 +266,7 @@ Assert the three required video roles, ≤60-second rule, public repository and 
 
 - [ ] **Step 2: Run the focused test and confirm failure**
 
-Run: `node --test submission-package.test.js`  
+Run: `node --test submission-package.test.js`
 Expected: FAIL because the checklist does not exist.
 
 - [ ] **Step 3: Create the checklist and synchronize release language**
@@ -279,7 +279,7 @@ The release audit must reject final-ready status if any required URL, media, pho
 
 - [ ] **Step 5: Verify and commit Task 6**
 
-Run: `node --test submission-package.test.js && npm run verify && npm run audit:release -- --output release-audit/latest`  
+Run: `node --test submission-package.test.js && npm run verify && npm run audit:release -- --output release-audit/latest`
 Expected: implementation checks pass; only genuine external gates remain pending. Commit Task 6 paths with message `docs: synchronize final submission package`.
 
 ### Task 7: Browser, responsive, and accessibility verification
@@ -332,7 +332,7 @@ For every code or design finding, add or update a regression test, make the mini
 
 - [ ] **Step 1: Run the complete verification suite**
 
-Run: `npm run verify && npm run audit:release -- --output release-audit/latest`  
+Run: `npm run verify && npm run audit:release -- --output release-audit/latest`
 Expected: zero implementation failures and an accurate external-gate list.
 
 - [ ] **Step 2: Review every changed line**

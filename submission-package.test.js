@@ -79,6 +79,7 @@ test('team photo, HackOS, organizer form, and every pass require matching comple
     value => { value.organizerForm.proof = null; },
     value => { value.repository.proof.buildFingerprint = 'sha256:other'; },
     value => { value.deployment.proof.completion = false; },
+    value => { value.hackos.proof.recordedAt = 'yesterday'; },
   ]) {
     const value = completed();
     mutate(value);
@@ -96,4 +97,17 @@ test('completed records reject placeholders and imprecise OpenAI disclosure', ()
   const vague = completed();
   vague.openAiDisclosure = 'We used AI.';
   assert.match(validateSubmissionChecklist(vague).errors.join('\n'), /OpenAI disclosure/i);
+});
+
+test('a failed required deliverable can never produce a ready package', () => {
+  for (const mutate of [
+    value => { value.scientificReview.status = 'fail'; },
+    value => { value.videos[0].status = 'fail'; },
+  ]) {
+    const value = completed();
+    mutate(value);
+    const result = validateSubmissionChecklist(value);
+    assert.equal(result.ready, false);
+    assert.match(result.errors.join('\n'), /failed/i);
+  }
 });

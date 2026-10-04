@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "build": {
-    "fingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665",
-    "generatedAt": "2026-10-04T10:32:58.195Z"
+    "fingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320",
+    "generatedAt": "2026-10-04T10:42:51.000Z"
   },
   "gates": [
     {
@@ -10,8 +10,15 @@
       "dimension": "code-and-functionality",
       "required": true,
       "external": false,
-      "state": "not-run",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "test-report",
+          "path": "release-audit/latest/audit.json",
+          "recordedAt": "2026-10-04T10:42:51.000Z",
+          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
+        }
+      ]
     },
     {
       "id": "browser-accessibility-matrix",
@@ -23,20 +30,20 @@
         {
           "kind": "browser-verification-report",
           "path": "docs/FINAL_BROWSER_VERIFICATION.md",
-          "recordedAt": "2026-10-04T10:32:58.195Z",
-          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+          "recordedAt": "2026-10-04T10:42:51.000Z",
+          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
         },
         {
           "kind": "desktop-screenshot",
           "path": "design/judge-desktop-final.png",
-          "recordedAt": "2026-10-04T10:32:58.195Z",
-          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+          "recordedAt": "2026-10-04T10:42:51.000Z",
+          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
         },
         {
           "kind": "mobile-screenshot",
           "path": "design/judge-mobile-final.png",
-          "recordedAt": "2026-10-04T10:32:58.195Z",
-          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+          "recordedAt": "2026-10-04T10:42:51.000Z",
+          "buildFingerprint": "sha256:7c7ffaf00d62a5d51a7e61ccea6320207454606d8bd72c8f16188403662b8320"
         }
       ]
     },

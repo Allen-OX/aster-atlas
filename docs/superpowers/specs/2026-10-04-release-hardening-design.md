@@ -1,7 +1,7 @@
 # Aster Atlas 10/10 Release-Hardening Design
 
-**Date:** October 4, 2026  
-**Status:** Approved in-chat; written specification awaiting user review  
+**Date:** October 4, 2026
+**Status:** Approved in-chat; written specification awaiting user review
 **Scope:** Release-critical hardening of the existing Aster Atlas prototype
 
 ## 1. Outcome

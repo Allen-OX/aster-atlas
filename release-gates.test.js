@@ -70,6 +70,12 @@ test('a pass requires complete evidence tied to the manifest build', () => {
   ]));
   assert.equal(mismatch.valid, false);
   assert.match(mismatch.errors.join('\n'), /fingerprint/i);
+
+  const malformedDate = validateReleaseManifest(manifest([
+    gate({ evidence: [proof({ recordedAt: 'yesterday' })] }),
+  ]));
+  assert.equal(malformedDate.valid, false);
+  assert.match(malformedDate.errors.join('\n'), /recordedAt.*ISO/i);
 });
 
 test('forged external pass is downgraded to fail without completion proof', () => {

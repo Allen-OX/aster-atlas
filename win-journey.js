@@ -1,6 +1,7 @@
 import { evidencePackage as graph } from './win-evidence.js';
 import { validateGraph,createCanonicalResolver,gateExplanation,assessCandidate,noSupportedRoute,REVIEW_CONFIG } from './win-review.js';
 import { extractionArtifact } from './win-openai.js';
+import { OPENAI_DISCLOSURE } from './openai-disclosure.js';
 const esc=value=>String(value??'unknown').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=id=>document.getElementById(id);
 const nodes=new Map(graph.nodes.map(n=>[n.id,n])),edges=new Map(graph.edges.map(e=>[e.id,e])),sources=new Map(graph.sources.map(s=>[s.id,s]));
@@ -52,6 +53,6 @@ export function initWinJourney(){
  document.querySelectorAll('[data-win-step]').forEach(b=>b.onclick=()=>{active=b.dataset.winStep;render();const [number,label]=stepMeta[active];$('journey-status').textContent=`Journey step ${number} of 5: ${label}. Research proposal · expert review pending.`;$('win-panel').focus({preventScroll:true});});
  $('patient-journey').addEventListener('click',e=>{if(e.target.closest('[data-action-evidence]'))showEvidence(opportunity.action.edgeIds);const c=e.target.closest('[data-evidence]');if(c)showEvidence([c.dataset.evidence]);const n=e.target.closest('[data-win-node]');if(n){const node=nodes.get(n.dataset.winNode);dialog(node.canonicalName,`<p>${esc(node.description)}</p><p class="review-label">${esc(node.reviewStatus)}</p>`+evidence(graph.edges.filter(e=>e.from===node.id||e.to===node.id).map(e=>e.id)));}});
  $('inspect-journey-evidence').onclick=()=>showEvidence(graph.edges.map(e=>e.id));
- $('win-ai').onclick=()=>dialog('OpenAI build and extraction trail',`<p><b>OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used.</b></p><p>The structured candidates remain pending independent expert review. The exact model identifier was not exposed by the session, and human approval is not claimed. Removing supporting edges suppresses the corresponding explanation.</p><pre>${esc(JSON.stringify(extractionArtifact,null,2))}</pre>`);
+ $('win-ai').onclick=()=>dialog('OpenAI build and extraction trail',`<p><b>${esc(OPENAI_DISCLOSURE)}</b></p><p>The structured candidates remain pending independent expert review. Human approval is not claimed. Removing supporting edges suppresses the corresponding explanation.</p><pre>${esc(JSON.stringify(extractionArtifact,null,2))}</pre>`);
  $('win-close').onclick=()=>inspector.close();inspector.addEventListener('cancel',event=>{event.preventDefault();inspector.close();});inspector.addEventListener('click',event=>{if(event.target===inspector){const rect=inspector.getBoundingClientRect();const outside=event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom;if(outside)inspector.close();}});inspector.addEventListener('close',()=>returnFocus?.focus());start();
 }

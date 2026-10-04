@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "tool": "OpenAI Codex",
+  "mode": "implementation assistance and build-time structured extraction",
+  "runtimeModelCall": false,
+  "paidApiCall": false,
+  "disclosure": "OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.",
+  "model": null,
+  "modelDisclosure": "Exact model identifier was not exposed by this session; do not infer it.",
+  "promptVersion": "aster-win-readiness-extraction-v1",
+  "prompt": "Extract stable entities and exact source-supported claims about FRDA, ISCU, iron–sulfur biology and candidate asset reuse. Preserve source spans, distinguish inference and counterevidence, include tissue and model limitations, and mark every candidate pending independent expert review. Never infer treatment transfer or confirmed collaboration.",
+  "createdAt": "2026-10-04",
+  "reviewDecision": "pending-independent-expert",
+  "reviewerNote": "AI source checking and schema tests have completed. No qualified human approval or prize eligibility is asserted.",
+  "records": [
+    {
+      "id": "codex-v1-frda-iscu-mechanism",
+      "model": null,
+      "promptVersion": "aster-win-readiness-extraction-v1",
+      "input": [
+        {
+          "sourceId": "mochel-2008",
+          "exactPassage": "ISCU interacts with the Friedreich ataxia gene product frataxin in iron-sulfur cluster biosynthesis.",
+          "structuredField": "interaction"
+        }
+      ],
+      "proposedSubject": "frda",
+      "proposedRelationship": "mechanism-level research connection",
+      "proposedObject": "iscu-myopathy",
+      "edgeId": "frda-iscu-mechanism",
+      "claim": "FRDA and the studied ISCU myopathy involve related Fe–S biology.",
+      "qualifiers": [
+        "inferred"
+      ],
+      "limitations": "Related mechanism, distinct disease; no validated cross-disease reuse.",
+      "supportingTextSpan": [
+        {
+          "sourceId": "mochel-2008",
+          "passageId": "interaction",
+          "field": "interaction",
+          "passage": "ISCU interacts with the Friedreich ataxia gene product frataxin in iron-sulfur cluster biosynthesis.",
+          "locator": "Abstract"
+        }
+      ],
+      "reviewDecision": "pending-independent-expert",
+      "reviewerNote": "Source checked by AI. A qualified reviewer must accept, revise or reject this candidate."
+    },
+    {
+      "id": "codex-v1-tissue-difference",
+      "model": null,
+      "promptVersion": "aster-win-readiness-extraction-v1",
+      "input": [
+        {
+          "sourceId": "sanaker-2010",
+          "exactPassage": "being most abnormal in mature skeletal muscle",
+          "structuredField": "muscle"
+        },
+        {
+          "sourceId": "sanaker-2010",
+          "exactPassage": "Myoblasts and fibroblasts have more of the normally spliced variant",
+          "structuredField": "fibroblasts"
+        }
+      ],
+      "proposedSubject": "iscu-myopathy",
+      "proposedRelationship": "limits model transfer",
+      "proposedObject": "claim-transfer-limit",
+      "edgeId": "tissue-difference",
+      "claim": "Abnormal ISCU splicing was greatest in mature muscle; fibroblasts retained more normal transcript.",
+      "qualifiers": [
+        "direct"
+      ],
+      "limitations": "One non-Swedish case; cell type and differentiation must be checked.",
+      "supportingTextSpan": [
+        {
+          "sourceId": "sanaker-2010",
+          "passageId": "muscle",
+          "field": "muscle",
+          "passage": "being most abnormal in mature skeletal muscle",
+          "locator": "Abstract, ratio of abnormal and normal transcripts"
+        },
+        {
+          "sourceId": "sanaker-2010",
+          "passageId": "fibroblasts",
+          "field": "fibroblasts",
+          "passage": "Myoblasts and fibroblasts have more of the normally spliced variant",
+          "locator": "Abstract"
+        }
+      ],
+      "reviewDecision": "pending-independent-expert",
+      "reviewerNote": "Source checked by AI. A qualified reviewer must accept, revise or reject this candidate."
+    },
+    {
+      "id": "codex-v1-model-counterexample",
+      "model": null,
+      "promptVersion": "aster-win-readiness-extraction-v1",
+      "input": [
+        {
+          "sourceId": "fara-assays",
+          "exactPassage": "Found no evidence of ISC defects in these models.",
+          "structuredField": "counterexample"
+        }
+      ],
+      "proposedSubject": "fes-assay-guide",
+      "proposedRelationship": "counterexample to universal assay signal",
+      "proposedObject": "claim-transfer-limit",
+      "edgeId": "model-counterexample",
+      "claim": "The guide reports a fibroblast/iPSC model example without detectable ISC defects.",
+      "qualifiers": [
+        "contradictory"
+      ],
+      "limitations": "Curator summary of Hick et al.; not a test of FACLR lines or a refutation of FRDA mechanism.",
+      "supportingTextSpan": [
+        {
+          "sourceId": "fara-assays",
+          "passageId": "counterexample",
+          "field": "counterexample",
+          "passage": "Found no evidence of ISC defects in these models.",
+          "locator": "Page 2, fibroblasts and iPSCs, annotation of Hick et al. (2013)"
+        }
+      ],
+      "reviewDecision": "pending-independent-expert",
+      "reviewerNote": "Source checked by AI. A qualified reviewer must accept, revise or reject this candidate."
+    },
+    {
+      "id": "codex-v1-faclr-partner",
+      "model": null,
+      "promptVersion": "aster-win-readiness-extraction-v1",
+      "input": [
+        {
+          "sourceId": "faclr-owner",
+          "exactPassage": "Please contact Dr. Marek Napierala",
+          "structuredField": "contact"
+        }
+      ],
+      "proposedSubject": "faclr",
+      "proposedRelationship": "public resource contact",
+      "proposedObject": "marek-napierala",
+      "edgeId": "faclr-partner",
+      "claim": "The repository names Marek Napierala as the contact for available lines.",
+      "qualifiers": [
+        "direct"
+      ],
+      "limitations": "Contact listing is not consent to collaborate.",
+      "supportingTextSpan": [
+        {
+          "sourceId": "faclr-owner",
+          "passageId": "contact",
+          "field": "contact",
+          "passage": "Please contact Dr. Marek Napierala",
+          "locator": "Requesting available lines"
+        }
+      ],
+      "reviewDecision": "pending-independent-expert",
+      "reviewerNote": "Source checked by AI. A qualified reviewer must accept, revise or reject this candidate."
+    }
+  ]
+}
