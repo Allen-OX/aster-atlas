@@ -25,9 +25,15 @@
     }
   },
   "teamPhoto": {
-    "status": "pending-external",
+    "status": "pass",
     "path": "submission-media/team-photo.jpg",
-    "proof": null
+    "proof": {
+      "kind": "hackos-team-photo-receipt",
+      "path": "release/submission-confirmations.json",
+      "recordedAt": "2026-10-04T11:22:23Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true
+    }
   },
   "scientificReview": {
     "status": "pending-external",
@@ -86,11 +92,23 @@
     }
   ],
   "hackos": {
-    "status": "pending-external",
-    "proof": null
+    "status": "pass",
+    "proof": {
+      "kind": "hackos-submission-receipt",
+      "path": "release/submission-confirmations.json",
+      "recordedAt": "2026-10-04T11:22:23Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true
+    }
   },
   "organizerForm": {
-    "status": "pending-external",
-    "proof": null
+    "status": "pass",
+    "proof": {
+      "kind": "organizer-form-receipt",
+      "path": "release/submission-confirmations.json",
+      "recordedAt": "2026-10-04T11:22:23Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true
+    }
   }
 }

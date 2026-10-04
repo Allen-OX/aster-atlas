@@ -124,24 +124,48 @@
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "hackos-team-photo-receipt",
+          "path": "release/submission-confirmations.json",
+          "recordedAt": "2026-10-04T11:22:23Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     },
     {
       "id": "hackos-confirmation",
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "hackos-submission-receipt",
+          "path": "release/submission-confirmations.json",
+          "recordedAt": "2026-10-04T11:22:23Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     },
     {
       "id": "organizer-form-confirmation",
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "organizer-form-receipt",
+          "path": "release/submission-confirmations.json",
+          "recordedAt": "2026-10-04T11:22:23Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     }
   ]
 }

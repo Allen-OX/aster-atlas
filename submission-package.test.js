@@ -34,7 +34,7 @@ test('baseline checklist contains every required deliverable and remains pending
   assert.equal(result.valid, true);
   assert.equal(result.ready, false);
   assert.ok(result.pending.includes('scientificReview'));
-  assert.ok(result.pending.includes('organizerForm'));
+  assert.ok(result.pending.includes('usabilityStudy'));
 });
 
 test('a complete exact-build package with all receipts is ready', () => {

@@ -5,7 +5,7 @@ Audited runtime fingerprint: `sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f3938
 
 ## Release decision
 
-**All controllable implementation and critical-journey design checks pass. The package is not yet submission-complete because authentic external evidence is still pending.** No pending item is represented as completed.
+**All controllable implementation and critical-journey design checks pass, and both required organizer submissions were accepted. Authentic scientific, usability, and eligibility evidence remains pending.** No pending item is represented as completed.
 
 | Dimension | State | Evidence | Remaining condition |
 | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Audited runtime fingerprint: `sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f3938
 | Product design | Pass for the critical judge path | `docs/FINAL_BROWSER_VERIFICATION.md`; desktop and mobile screenshots | This is targeted browser/accessibility verification, not full WCAG certification or human usability evidence |
 | Scientific credibility | Pending external | Eight public sources reachable; 26 entities; 31 source-linked claims; complete blank reviewer packet | Independent qualified review of every claim and current resource-owner confirmation |
 | Human usability | Pending external | Anonymous, local-only, exact-build study harness with fail-closed scoring | Five unfamiliar people; at least four unassisted completions under 60 seconds with all four comprehension checks correct |
-| Submission readiness | Partially complete | Public repository, HTTPS GitHub Pages deployment, approved local team-photo asset, and three verified exact-build videos | Portal photo acceptance, eligibility decision, and both submission receipts |
+| Submission readiness | Submitted | Public repository, HTTPS GitHub Pages deployment, accepted team photo, three verified exact-build videos, HackOS receipt, and organizer-form receipt | Explicit OpenAI eligibility decision remains external |
 
 ## Verification performed
 
@@ -50,7 +50,6 @@ No controllable critical, important, or moderate finding remains in the audited 
 
 - Independent scientific review and resource-owner confirmation
 - Five-person unfamiliar-user study on this exact fingerprint
-- Portal acceptance of the prepared team photograph and OpenAI eligibility confirmation
-- HackOS and organizer-form submission receipts
+- OpenAI eligibility confirmation
 
 These gates must remain `pending-external` until their real proof artifacts exist. Preparation, AI review, a local screenshot, or a drafted form is not completion evidence.

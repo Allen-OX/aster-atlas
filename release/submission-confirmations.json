@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-04T11:22:23Z",
+  "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+  "project": "Aster Atlas",
+  "challenge": "05 - Buffalo Initiative x OpenAI: AI Atlas for the World's Rare Diseases",
+  "confirmations": [
+    {
+      "kind": "hackos-submission-receipt",
+      "path": "https://app.hack-nation.ai/?eventId=4ee144f2-dd47-4613-9290-cf3e47509011&view=participant",
+      "recordedAt": "2026-10-04T11:22:23Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true,
+      "statusText": "Submission received. Video checks continue automatically.",
+      "photoStatusText": "Photo received. Checks running."
+    },
+    {
+      "kind": "organizer-form-receipt",
+      "path": "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfvUmMZQTslN0jV8JAPYs3xNqKYqDydeB2ZlPlv32fq9YmDyA/formResponse",
+      "recordedAt": "2026-10-04T11:22:23Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true,
+      "statusText": "Your response has been recorded."
+    }
+  ]
+}
