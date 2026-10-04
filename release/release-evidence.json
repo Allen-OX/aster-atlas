@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "build": {
+    "fingerprint": "unverified-local-build",
+    "generatedAt": "2026-10-04T00:00:00.000Z"
+  },
+  "gates": [
+    {
+      "id": "automated-tests",
+      "dimension": "code-and-functionality",
+      "required": true,
+      "external": false,
+      "state": "not-run",
+      "evidence": []
+    },
+    {
+      "id": "browser-accessibility-matrix",
+      "dimension": "product-design",
+      "required": true,
+      "external": false,
+      "state": "not-run",
+      "evidence": []
+    },
+    {
+      "id": "independent-scientific-review",
+      "dimension": "scientific-credibility",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "resource-owner-confirmation",
+      "dimension": "scientific-credibility",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "five-person-usability-study",
+      "dimension": "human-usability",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "public-repository",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "public-deployment",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "current-submission-media",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "accepted-team-photo",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "hackos-confirmation",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    },
+    {
+      "id": "organizer-form-confirmation",
+      "dimension": "submission-readiness",
+      "required": true,
+      "external": true,
+      "state": "pending-external",
+      "evidence": []
+    }
+  ]
+}
