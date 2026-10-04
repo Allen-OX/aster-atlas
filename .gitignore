@@ -2,3 +2,9 @@
 node_modules/
 *.log
 submission-media/
+
+.aster-state/
+__pycache__/
+.superpowers/
+release-audit/
+release/source-checks.json

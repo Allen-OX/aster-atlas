@@ -4,7 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "python3 -m http.server 4173",
-    "test": "node --test"
+    "start": "python3 universe-server.py --port 4173",
+    "test": "node --test",
+    "test:server": "python3 -m unittest -v universe_server_test.py",
+    "verify": "npm test && npm run test:server && node scripts/export-scientific-review.mjs --check",
+    "audit:release": "node scripts/release-audit.mjs",
+    "audit:sources": "node scripts/check-public-sources.mjs"
   }
 }
