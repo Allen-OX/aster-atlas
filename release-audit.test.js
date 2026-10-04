@@ -5,6 +5,7 @@ import {
   checkPublicSource,
   composeAuditManifest,
   fingerprintFiles,
+  isBuildArtifactPath,
   redactFinding,
   validateMediaRecord,
 } from './release-audit.js';
@@ -27,6 +28,15 @@ test('file fingerprints are path-sorted, stable, and content-sensitive', () => {
   assert.match(first, /^sha256:[a-f0-9]{64}$/);
   assert.equal(first, reordered);
   assert.notEqual(first, changed);
+});
+
+test('build fingerprints include runtime assets but exclude evidence generated after the build', () => {
+  for (const path of ['index.html', 'app.js', 'data/openai-win-extraction.json', 'assets/maps/countries.geojson']) {
+    assert.equal(isBuildArtifactPath(path), true, path);
+  }
+  for (const path of ['release/release-evidence.json', 'release/submission-checklist.json', 'design/judge-desktop-final.png', 'submission-media/demo.mp4', 'docs/FINAL_RELEASE_AUDIT.md']) {
+    assert.equal(isBuildArtifactPath(path), false, path);
+  }
 });
 
 test('media records fail for missing files, over-60 duration, or build mismatch', () => {

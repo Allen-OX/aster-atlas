@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import {
   composeAuditManifest,
   fingerprintFiles,
+  isBuildArtifactPath,
   renderAuditMarkdown,
   scanTextForSecrets,
   validateSubmissionChecklist,
@@ -17,20 +18,18 @@ const outputIndex = process.argv.indexOf('--output');
 const stamp = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-');
 const output = path.resolve(root, outputIndex >= 0 ? process.argv[outputIndex + 1] : `release-audit/${stamp}`);
 const excludedDirectories = new Set(['.git', '.superpowers', '.aster-state', '__pycache__', 'node_modules', 'release-audit', 'submission-media']);
-const releaseExtensions = new Set(['.html', '.js', '.css', '.json', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.geojson', '.woff2', '.py']);
+const fingerprintTraversalExcludedDirectories = new Set([...excludedDirectories, 'release', 'design', 'docs']);
 const textExtensions = new Set(['.html', '.js', '.css', '.json', '.svg', '.geojson', '.py']);
 
 async function collectFiles(directory = root) {
   const values = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && excludedDirectories.has(entry.name)) continue;
+    if (entry.isDirectory() && fingerprintTraversalExcludedDirectories.has(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) values.push(...await collectFiles(absolute));
-    else if (entry.isFile()
-      && releaseExtensions.has(path.extname(entry.name).toLowerCase())
-      && !entry.name.endsWith('.test.js')
-      && entry.name !== 'universe_server_test.py') {
-      values.push({ path: path.relative(root, absolute).replaceAll(path.sep, '/'), absolute });
+    else if (entry.isFile()) {
+      const relative = path.relative(root, absolute).replaceAll(path.sep, '/');
+      if (isBuildArtifactPath(relative)) values.push({ path: relative, absolute });
     }
   }
   return values;

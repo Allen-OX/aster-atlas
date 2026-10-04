@@ -1,6 +1,9 @@
 /* The decision journey remains readable without WebGL or motion. */
 /* Judge-flow accessibility and branch readability overrides. */
 .win-start form button,.win-tools button,.win-steps button,.win-dialog-head button,.win-cite,.win-path button{min-height:44px!important}
+.win-start form button{white-space:nowrap}
+.win-journey summary{min-height:44px;display:flex;align-items:center}
+#win-inspector{overflow-wrap:anywhere}
 .win-cite{padding:7px 10px!important}
 .win-path{display:block!important}
 .win-path details{width:100%}

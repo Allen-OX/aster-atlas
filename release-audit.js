@@ -3,8 +3,20 @@ import { createHash } from 'node:crypto';
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
 const releaseState = (state, detail, evidence = []) => ({ state, detail, evidence });
 const completedStatuses = new Set(['pass', 'pending-external', 'fail']);
+const buildExtensions = new Set(['.html', '.js', '.css', '.json', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.geojson', '.woff2', '.py']);
+const evidenceDirectories = new Set(['.git', '.superpowers', '.aster-state', '__pycache__', 'node_modules', 'release-audit', 'release', 'design', 'docs', 'submission-media']);
 
 export const OPENAI_DISCLOSURE = 'OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.';
+
+export function isBuildArtifactPath(value) {
+  const normalized = String(value || '').replaceAll('\\', '/').replace(/^\.\//, '');
+  const parts = normalized.split('/').filter(Boolean);
+  const basename = parts.at(-1) || '';
+  const extension = basename.includes('.') ? `.${basename.split('.').at(-1).toLowerCase()}` : '';
+  if (!parts.length || parts.some(part => evidenceDirectories.has(part))) return false;
+  if (basename.endsWith('.test.js') || basename === 'universe_server_test.py') return false;
+  return buildExtensions.has(extension);
+}
 
 export function fingerprintFiles(files) {
   const sorted = [...(Array.isArray(files) ? files : [])]

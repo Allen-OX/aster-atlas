@@ -105,3 +105,15 @@ test('mobile and reduced-motion rules preserve a single-column core journey', ()
   assert.match(winCss, /overflow-wrap:anywhere/);
   assert.match(winCss, /@media\(prefers-reduced-motion:reduce\)/);
 });
+
+test('the search action label cannot wrap at supported viewports', () => {
+  assert.match(winCss, /\.win-start form button\{[^}]*white-space:nowrap/);
+});
+
+test('core disclosure summaries meet the 44px touch-target minimum', () => {
+  assert.match(winCss, /\.win-journey summary\{[^}]*min-height:44px/);
+});
+
+test('evidence dialogs wrap long registry fields at 320 CSS pixels', () => {
+  assert.match(winCss, /#win-inspector\{[^}]*overflow-wrap:anywhere/);
+});

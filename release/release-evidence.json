@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "build": {
-    "fingerprint": "unverified-local-build",
-    "generatedAt": "2026-10-04T00:00:00.000Z"
+    "fingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665",
+    "generatedAt": "2026-10-04T10:32:58.195Z"
   },
   "gates": [
     {
@@ -18,8 +18,27 @@
       "dimension": "product-design",
       "required": true,
       "external": false,
-      "state": "not-run",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "browser-verification-report",
+          "path": "docs/FINAL_BROWSER_VERIFICATION.md",
+          "recordedAt": "2026-10-04T10:32:58.195Z",
+          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+        },
+        {
+          "kind": "desktop-screenshot",
+          "path": "design/judge-desktop-final.png",
+          "recordedAt": "2026-10-04T10:32:58.195Z",
+          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+        },
+        {
+          "kind": "mobile-screenshot",
+          "path": "design/judge-mobile-final.png",
+          "recordedAt": "2026-10-04T10:32:58.195Z",
+          "buildFingerprint": "sha256:4903dd0b6b2dc4d8a41ca0bf1b18343a3b4f052e7ac601f7e428d13cea29c665"
+        }
+      ]
     },
     {
       "id": "independent-scientific-review",
