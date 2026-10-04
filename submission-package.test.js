@@ -33,7 +33,7 @@ test('baseline checklist contains every required deliverable and remains pending
   const result = validateSubmissionChecklist(baseline);
   assert.equal(result.valid, true);
   assert.equal(result.ready, false);
-  assert.ok(result.pending.includes('repository'));
+  assert.ok(result.pending.includes('scientificReview'));
   assert.ok(result.pending.includes('organizerForm'));
 });
 

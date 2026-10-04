@@ -13,7 +13,7 @@ Audited runtime fingerprint: `sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f3938
 | Product design | Pass for the critical judge path | `docs/FINAL_BROWSER_VERIFICATION.md`; desktop and mobile screenshots | This is targeted browser/accessibility verification, not full WCAG certification or human usability evidence |
 | Scientific credibility | Pending external | Eight public sources reachable; 26 entities; 31 source-linked claims; complete blank reviewer packet | Independent qualified review of every claim and current resource-owner confirmation |
 | Human usability | Pending external | Anonymous, local-only, exact-build study harness with fail-closed scoring | Five unfamiliar people; at least four unassisted completions under 60 seconds with all four comprehension checks correct |
-| Submission readiness | Pending external | Validated exact-build checklist and three required media roles | Public repository/deployment, final-build videos, accepted team photo, eligibility decision, and both submission receipts |
+| Submission readiness | Partially complete | Public repository, HTTPS GitHub Pages deployment, approved local team-photo asset, and three verified exact-build videos | Portal photo acceptance, eligibility decision, and both submission receipts |
 
 ## Verification performed
 
@@ -50,9 +50,7 @@ No controllable critical, important, or moderate finding remains in the audited 
 
 - Independent scientific review and resource-owner confirmation
 - Five-person unfamiliar-user study on this exact fingerprint
-- Public repository and HTTPS deployment verified by a judge-accessible URL
-- Three final videos, each no longer than 60 seconds and tied to this fingerprint
-- Team-photo acceptance and OpenAI eligibility confirmation
+- Portal acceptance of the prepared team photograph and OpenAI eligibility confirmation
 - HackOS and organizer-form submission receipts
 
 These gates must remain `pending-external` until their real proof artifacts exist. Preparation, AI review, a local screenshot, or a drafted form is not completion evidence.

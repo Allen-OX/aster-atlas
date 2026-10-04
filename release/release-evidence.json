@@ -76,24 +76,48 @@
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "public-github-repository",
+          "path": "https://github.com/Allen-OX/aster-atlas",
+          "recordedAt": "2026-10-04T10:50:00.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     },
     {
       "id": "public-deployment",
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "github-pages-deployment",
+          "path": "https://allen-ox.github.io/aster-atlas/",
+          "recordedAt": "2026-10-04T10:50:00.000Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     },
     {
       "id": "current-submission-media",
       "dimension": "submission-readiness",
       "required": true,
       "external": true,
-      "state": "pending-external",
-      "evidence": []
+      "state": "pass",
+      "evidence": [
+        {
+          "kind": "verified-submission-media",
+          "path": "submission-media/media-proof.json",
+          "recordedAt": "2026-10-04T11:04:31Z",
+          "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+          "completion": true
+        }
+      ]
     },
     {
       "id": "accepted-team-photo",

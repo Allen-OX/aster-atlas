@@ -3,18 +3,30 @@
   "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
   "openAiDisclosure": "OpenAI Codex assisted implementation and build-time structured extraction; no runtime model or paid API call is used. The exact session model identifier is unknown, and independent expert review is pending.",
   "repository": {
-    "status": "pending-external",
-    "url": null,
-    "proof": null
+    "status": "pass",
+    "url": "https://github.com/Allen-OX/aster-atlas",
+    "proof": {
+      "kind": "public-github-repository",
+      "path": "https://github.com/Allen-OX/aster-atlas",
+      "recordedAt": "2026-10-04T10:50:00.000Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true
+    }
   },
   "deployment": {
-    "status": "pending-external",
-    "url": null,
-    "proof": null
+    "status": "pass",
+    "url": "https://allen-ox.github.io/aster-atlas/",
+    "proof": {
+      "kind": "github-pages-deployment",
+      "path": "https://allen-ox.github.io/aster-atlas/",
+      "recordedAt": "2026-10-04T10:50:00.000Z",
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "completion": true
+    }
   },
   "teamPhoto": {
     "status": "pending-external",
-    "path": null,
+    "path": "submission-media/team-photo.jpg",
     "proof": null
   },
   "scientificReview": {
@@ -32,27 +44,45 @@
   "videos": [
     {
       "role": "team-introduction",
-      "status": "pending-external",
+      "status": "pass",
       "path": "submission-media/aster-atlas-team.mp4",
-      "durationSeconds": 38,
-      "buildFingerprint": null,
-      "proof": null
+      "durationSeconds": 35.833,
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "proof": {
+        "kind": "verified-submission-video",
+        "path": "submission-media/media-proof.json",
+        "recordedAt": "2026-10-04T11:04:31Z",
+        "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+        "completion": true
+      }
     },
     {
       "role": "product-demo",
-      "status": "pending-external",
+      "status": "pass",
       "path": "submission-media/aster-atlas-demo.mp4",
-      "durationSeconds": 36.71,
-      "buildFingerprint": null,
-      "proof": null
+      "durationSeconds": 37.67,
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "proof": {
+        "kind": "verified-submission-video",
+        "path": "submission-media/media-proof.json",
+        "recordedAt": "2026-10-04T11:04:31Z",
+        "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+        "completion": true
+      }
     },
     {
       "role": "technical-walkthrough",
-      "status": "pending-external",
+      "status": "pass",
       "path": "submission-media/aster-atlas-tech.mp4",
-      "durationSeconds": 46.67,
-      "buildFingerprint": null,
-      "proof": null
+      "durationSeconds": 44.667,
+      "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+      "proof": {
+        "kind": "verified-submission-video",
+        "path": "submission-media/media-proof.json",
+        "recordedAt": "2026-10-04T11:04:31Z",
+        "buildFingerprint": "sha256:3320c9a191d2536ef7f917e9ee0a2fa2431907f39388c7048c3876313b1651f3",
+        "completion": true
+      }
     }
   ],
   "hackos": {

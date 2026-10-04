@@ -4,15 +4,15 @@ Updated October 4, 2026. This file reports evidence, not a predicted score or pr
 
 ## Release decision
 
-**Not submission-ready.** The implementation and release controls are strong, but independent scientific review, genuine five-person usability evidence, a public repository, a judge-accessible deployment, final-build media, eligibility confirmation, and both submission receipts remain pending external work.
+**Submission package prepared; external validation remains open.** The implementation, public repository, judge-accessible deployment, release controls, team-photo asset, and three final-build videos are verified. Independent scientific review, genuine five-person usability evidence, portal acceptance of the photo, eligibility confirmation, and both submission receipts remain pending external work.
 
 | Dimension | Current state | What establishes completion |
 | --- | --- | --- |
 | Code and functionality | Implemented; frozen-build verification still required | `npm run verify`, isolated-copy smoke, clean-tree audit, and zero-error browser matrix on the same fingerprint |
-| Product design | Implemented; final browser evidence pending | Judge Mode checks at desktop, mobile, 320 CSS px/200% zoom, keyboard-only, reduced motion, and no-3D fallback |
+| Product design | Verified | Judge Mode checks at desktop, mobile, 320 CSS px/200% zoom, keyboard-only, reduced motion, and no-3D fallback |
 | Scientific credibility | Pending external | Independent qualified review of all 31 claims plus current resource-owner confirmation |
 | Human usability | Pending external | Five unfamiliar people on one build; at least four unassisted, under 60 seconds, with all comprehension checks correct |
-| Submission readiness | Pending external | Public GitHub repository, HTTPS deployment, accepted photo, three current videos, eligibility proof, HackOS receipt, and organizer-form receipt |
+| Submission readiness | Partially complete | Public GitHub repository, HTTPS deployment, approved local photo asset, and three exact-build videos pass; portal photo acceptance, eligibility proof, HackOS receipt, and organizer-form receipt remain |
 
 ## Implemented evidence
 
@@ -47,4 +47,4 @@ This disclosure records real assistance without inventing a model identifier or 
 - `docs/FINAL_RELEASE_CHECKLIST.md` describes the freeze and submission procedure.
 - `release-audit/latest/audit.json`, when freshly generated, is the machine-readable audit for the candidate build.
 
-No expert sign-off, participant result, resource-owner response, publication, deployment, upload, eligibility decision, or submission confirmation has been manufactured or inferred.
+No expert sign-off, participant result, resource-owner response, portal media acceptance, eligibility decision, or submission confirmation has been manufactured or inferred. The repository and deployment claims are backed by dated public proof, and the local media claims are backed by hashes, measured durations, and codec inspection.

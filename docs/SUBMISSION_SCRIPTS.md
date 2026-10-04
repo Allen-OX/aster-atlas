@@ -1,10 +1,10 @@
 # Submission video scripts — final-build drafts
 
-October 4, 2026. These drafts follow the intended FRDA–ISCU model-fit review journey. **Do not record or upload them as a completed scientific validation or final submission.** First verify that every demonstrated source, claim, asset and control matches the final build, and resolve the P0 scientific review gates in `WIN_READINESS_STATUS.md`.
+October 4, 2026. These scripts follow the intended FRDA–ISCU model-fit review journey. Three exact-build videos were rendered from verified site imagery with disclosed synthetic narration. They present the prototype honestly and do not claim completed scientific validation; the P0 scientific review gates remain open in `WIN_READINESS_STATUS.md`.
 
 Before recording, freeze the candidate with `npm run verify` and `npm run audit:release -- --output release-audit/latest`. Copy the resulting fingerprint into `release/submission-checklist.json` and `submission-media/build-fingerprint.txt`. All three videos must show that exact build, measure no longer than 60 seconds, and be re-recorded whenever the fingerprint changes.
 
-Each spoken script is designed for approximately 40–50 seconds at a measured conversational pace, leaving time for transitions within the 60-second limit. Actual recorded duration must be measured. Do not speed up unreadable source inspection to fit the limit. No videos were recorded or uploaded for this document.
+The finished files measure 35.833, 37.670, and 44.667 seconds. Each is 1280×720 H.264 with AAC audio, an embedded English caption track, synthetic-narration disclosure, and the exact frozen-build fingerprint recorded in `submission-media/media-proof.json`. They have not been represented as uploaded until a portal receipt exists.
 
 Use real builder identification only with that person's approval. The team script deliberately contains no invented name, affiliation, qualification, personal motivation or claim of expert review. If synthetic narration is used, disclose it; it must not impersonate the builder.
 

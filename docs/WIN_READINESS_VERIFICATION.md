@@ -25,4 +25,4 @@ Three browser findings were repaired and rechecked: a wrapping primary button la
 
 ## Gates that cannot be fabricated
 
-Independent qualified review, resource-owner confirmation, five genuine unfamiliar usability participants, OpenAI prize-track eligibility, final public URLs, final-build media, and submission receipts remain external until real evidence exists. The system keeps those gates pending rather than converting preparation into proof.
+Independent qualified review, resource-owner confirmation, five genuine unfamiliar usability participants, OpenAI prize-track eligibility, portal photo acceptance, and submission receipts remain external until real evidence exists. The public repository, GitHub Pages deployment, approved local photo asset, and three final-build videos are verified. The system keeps every other gate pending rather than converting preparation into proof.
